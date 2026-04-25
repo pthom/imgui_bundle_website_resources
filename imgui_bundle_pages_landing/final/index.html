@@ -353,6 +353,42 @@
   }
   .philosophy p:last-child { margin-bottom: 0; }
 
+  .philo-callout {
+    margin-top: 28px;
+    padding: 14px 18px;
+    border-left: 2px solid var(--accent);
+    background: rgba(251, 209, 65, 0.04);
+    border-radius: 0 6px 6px 0;
+  }
+  .philo-callout-label {
+    font-family: var(--mono); font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 0.1em; text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .philo-callout-body {
+    font-size: 14px !important;
+    line-height: 1.55 !important;
+    color: var(--ink-dim) !important;
+    margin: 0 !important;
+  }
+  .philo-callout-body a {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 600;
+    border-bottom: 1px solid color-mix(in srgb, var(--accent) 40%, transparent);
+    transition: border-color .15s;
+  }
+  .philo-callout-body a:hover { border-bottom-color: var(--accent); }
+  .philo-callout-link {
+    display: inline-block;
+    margin-top: 10px;
+    font-family: var(--mono); font-size: 12px;
+    color: var(--accent);
+    text-decoration: none;
+  }
+  .philo-callout-link:hover { filter: brightness(1.15); }
+
   .codecard {
     position: relative;
   }
@@ -957,6 +993,16 @@
           In the age of generated code, brain time is the scarce resource.
           Readability wins.
         </p>
+
+        <div class="philo-callout">
+          <div class="philo-callout-label">// even less code</div>
+          <p class="philo-callout-body">
+            Annotate a Python function and
+            <a href="https://pthom.github.io/fiatlight/" target="_blank" rel="noopener">fiatlight</a>
+            builds the UI for you — sliders, file pickers, dropdowns, live pipelines. Zero UI code.
+          </p>
+          <a class="philo-callout-link" href="https://pthom.github.io/fiatlight/" target="_blank" rel="noopener">fiatlight →</a>
+        </div>
       </div>
       <div class="codecard">
         <div class="codewindow">
