@@ -736,6 +736,11 @@
     font-size: 40px; font-weight: 700; color: var(--ink); margin: 0;
     letter-spacing: -0.02em;
   }
+  .apps-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
   .app-card {
     background: var(--bg-elev);
     border: 1px solid var(--border);
@@ -761,24 +766,6 @@
     margin-top: auto; padding-top: 10px;
     border-top: 1px dashed var(--border);
     letter-spacing: 0.08em;
-  }
-
-  /* ---------- Notebook ---------- */
-  .notebook {
-    padding: 48px 32px;
-    border-bottom: 1px solid var(--border);
-    background: var(--bg-inset);
-  }
-  .notebook-row {
-    display: flex; justify-content: space-between; align-items: baseline;
-    gap: 24px; flex-wrap: wrap;
-  }
-  .notebook a {
-    font-family: var(--mono); font-size: 13px;
-    color: var(--accent);
-    text-decoration: none;
-    border-bottom: 1px solid var(--accent);
-    padding-bottom: 3px;
   }
 
   /* ---------- Footer ---------- */
@@ -838,7 +825,6 @@
     .philosophy { padding: 48px 20px; }
     .builton { padding: 48px 20px; }
     .webdeploy { padding: 48px 20px; }
-    .notebook { padding: 32px 20px; }
     .footer { padding: 40px 20px 24px; }
 
     .h2, .eco-header h2, .apps-header h2 { font-size: 30px; margin-bottom: 32px; }
@@ -847,6 +833,7 @@
     .webdeploy h2 { font-size: 30px; }
 
     .grid-3 { grid-template-columns: 1fr; }
+    .apps-grid { grid-template-columns: repeat(2, 1fr); }
     .philosophy-grid { grid-template-columns: 1fr; gap: 32px; }
     .webdeploy-grid { grid-template-columns: 1fr; gap: 32px; }
 
@@ -862,6 +849,7 @@
     .footer-grid { grid-template-columns: 1fr; }
     .footer-bottom { flex-direction: column; }
     .compat { gap: 10px 16px; }
+    .apps-grid { grid-template-columns: 1fr; }
   }
 </style>
 </head>
@@ -889,20 +877,6 @@
     </a>
   </header>
 
-  <!-- Status bar -->
-  <div class="statusbar">
-    <div>
-      <span><span class="ok">●</span> ready</span>
-      <span>main</span>
-      <span>python · c++</span>
-    </div>
-    <div>
-      <span>desktop · mobile · web |</span>
-      <span>120 FPS |</span>
-      <span>GPU rendering</span>
-    </div>
-  </div>
-
   <!-- Hero -->
   <section class="hero">
     <div class="hero-grid">
@@ -919,7 +893,6 @@
         </h1>
         <p class="lede">
           Interactive Python &amp; C++ apps for desktop, mobile, and web.
-          Build apps where code <em>is</em> the UI.
         </p>
 
         <div class="install-row">
@@ -935,10 +908,7 @@
           <span>✓ Windows</span>
           <span>✓ macOS</span>
           <span>✓ Linux</span>
-          <span>✓ iOS</span>
-          <span>✓ Android</span>
           <span>✓ WebAssembly</span>
-          <span>✓ Pyodide</span>
         </div>
       </div>
 
@@ -970,79 +940,6 @@
           </div>
         </div>
       </div>
-    </div>
-  </section>
-
-  <!-- Pillars -->
-  <section class="pillars">
-    <div class="eyebrow">START HERE</div>
-    <h2 class="h2">Three ways in.</h2>
-    <div class="grid-3">
-      <a class="pillar" href="/doc/" style="--pillar-color: var(--accent3);">
-        <div class="cmd"><span class="muted">$ </span>open --doc</div>
-        <h3>Documentation</h3>
-        <p>What it is, how to start, full API references for every library in the bundle.</p>
-        <div class="pillar-meta">
-          <span>/doc/  ·  Markdown · MyST</span>
-          <span class="arrow">→</span>
-        </div>
-      </a>
-      <a class="pillar" href="/explorer/" style="--pillar-color: var(--accent);">
-        <div class="cmd"><span class="muted">$ </span>open --explorer</div>
-        <h3>Interactive Explorer</h3>
-        <p>Browse demos, see the source, try every widget. The reference manual that runs.</p>
-        <div class="pillar-meta">
-          <span>/explorer/  ·  WebAssembly</span>
-          <span class="arrow">→</span>
-        </div>
-      </a>
-      <a class="pillar" href="/playground/" style="--pillar-color: var(--accent2);">
-        <div class="cmd"><span class="muted">$ </span>open --playground</div>
-        <h3>Python Playground</h3>
-        <p>Live Python sandbox with ready-to-run demos. Edit the code, see results instantly.</p>
-        <div class="pillar-meta">
-          <span>/playground/  ·  Pyodide</span>
-          <span class="arrow">→</span>
-        </div>
-      </a>
-    </div>
-  </section>
-
-  <!-- Deploy to web -->
-  <section class="webdeploy">
-    <div class="webdeploy-grid">
-      <div>
-        <div class="eyebrow webdeploy-eyebrow">// pyodide · webassembly</div>
-        <h2>Deploy Python apps<br />to the web.</h2>
-        <p class="webdeploy-sub">No React. No CSS. No server. No fuss.</p>
-        <p>
-          The same source runs as a desktop binary or as a web app that loads entirely in the browser via Pyodide.
-          No rewrite, no server, no HTML to author. iOS and Android will happily run those web apps.
-        </p>
-        <p class="webdeploy-aside">
-          <strong>Same code. No HTML, no server.</strong>
-          A unique &amp; powerful combination.
-        </p>
-        <div class="webdeploy-cta-row">
-          <a href="/playground/" class="webdeploy-cta">Open the playground →</a>
-          <span class="webdeploy-meta">/playground/  ·  runs in your browser</span>
-        </div>
-      </div>
-
-      <button type="button" class="webdeploy-window" id="webdeployZoom" aria-label="Enlarge screenshot">
-        <div class="webdeploy-chrome">
-          <span class="dot" style="background:#ff5f56"></span>
-          <span class="dot" style="background:#ffbd2e"></span>
-          <span class="dot" style="background:#27c93f"></span>
-          <span class="webdeploy-url">imgui-bundle.pages.dev/playground/</span>
-          <span class="webdeploy-zoom-hint">click to enlarge</span>
-        </div>
-        <div class="webdeploy-image-wrap">
-          <img src="assets/pyodide_example_pendulum.jpg"
-               alt="Double pendulum playground running entirely in the browser via Pyodide — Python source on the left, interactive UI in the middle, animation on the right"
-               class="webdeploy-image" />
-        </div>
-      </button>
     </div>
   </section>
 
@@ -1110,6 +1007,41 @@ hello_imgui.run(gui, window_title=<span class="s">"Fruit Picker"</span>)</pre>
           </div>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- Pillars -->
+  <section class="pillars">
+    <div class="eyebrow">START HERE</div>
+    <h2 class="h2">Three ways in.</h2>
+    <div class="grid-3">
+      <a class="pillar" href="/doc/" style="--pillar-color: var(--accent3);">
+        <div class="cmd"><span class="muted">$ </span>open --doc</div>
+        <h3>Documentation</h3>
+        <p>What it is, how to start, full API references for every library in the bundle.</p>
+        <div class="pillar-meta">
+          <span>/doc/  ·  Markdown · MyST</span>
+          <span class="arrow">→</span>
+        </div>
+      </a>
+      <a class="pillar" href="/explorer/" style="--pillar-color: var(--accent);">
+        <div class="cmd"><span class="muted">$ </span>open --explorer</div>
+        <h3>Interactive Explorer</h3>
+        <p>Browse demos, see the source, try every widget. The reference manual that runs.</p>
+        <div class="pillar-meta">
+          <span>/explorer/  ·  WebAssembly</span>
+          <span class="arrow">→</span>
+        </div>
+      </a>
+      <a class="pillar" href="/playground/" style="--pillar-color: var(--accent2);">
+        <div class="cmd"><span class="muted">$ </span>open --playground</div>
+        <h3>Python Playground</h3>
+        <p>Live Python sandbox with ready-to-run demos. Edit the code, see results instantly.</p>
+        <div class="pillar-meta">
+          <span>/playground/  ·  Pyodide</span>
+          <span class="arrow">→</span>
+        </div>
+      </a>
     </div>
   </section>
 
@@ -1212,7 +1144,7 @@ hello_imgui.run(gui, window_title=<span class="s">"Fruit Picker"</span>)</pre>
         <h2>A wide range of applications.</h2>
       </div>
     </div>
-    <div class="grid-3">
+    <div class="apps-grid">
       <div class="app-card" style="--app-color: var(--accent3);">
         <div class="app-icon">
           <svg viewBox="0 0 60 40" fill="none" stroke="currentColor" stroke-width="1.5">
@@ -1280,49 +1212,44 @@ hello_imgui.run(gui, window_title=<span class="s">"Fruit Picker"</span>)</pre>
         <div class="app-tag">// imgui-node-editor</div>
       </div>
 
-      <div class="app-card" style="--app-color: #f472b6;">
-        <div class="app-icon">
-          <svg viewBox="0 0 60 40" fill="none" stroke="currentColor" stroke-width="1.5">
-            <line x1="6" y1="10" x2="42" y2="10" />
-            <line x1="6" y1="16" x2="54" y2="16" stroke-width="0.8" />
-            <line x1="6" y1="20" x2="48" y2="20" stroke-width="0.8" />
-            <line x1="6" y1="24" x2="54" y2="24" stroke-width="0.8" />
-            <line x1="6" y1="28" x2="36" y2="28" stroke-width="0.8" />
-            <rect x="6" y="32" width="22" height="2" />
-          </svg>
-        </div>
-        <div>
-          <h3>Markdown documentation</h3>
-          <p>Rich docs rendered inline — headings, links, code blocks, images. Documentation that lives with the app.</p>
-        </div>
-        <div class="app-tag">// imgui-md</div>
-      </div>
-
-      <div class="app-card" style="--app-color: var(--red);">
-        <div class="app-icon">
-          <svg viewBox="0 0 60 40" fill="none" stroke="currentColor" stroke-width="1.5">
-            <circle cx="14" cy="20" r="9" />
-            <line x1="14" y1="13" x2="14" y2="17" />
-            <rect x="32" y="12" width="22" height="6" rx="3" />
-            <circle cx="38" cy="15" r="2" fill="currentColor" />
-            <rect x="32" y="24" width="22" height="6" rx="3" />
-            <circle cx="48" cy="27" r="2" fill="currentColor" />
-          </svg>
-        </div>
-        <div>
-          <h3>Feature-rich widgets</h3>
-          <p>Knobs, command palettes, toggles, file dialogs, gizmos, color editors — batteries included.</p>
-        </div>
-        <div class="app-tag">// add-ons</div>
-      </div>
     </div>
   </section>
 
-  <!-- Notebook -->
-  <section class="notebook">
-    <div class="notebook-row">
-      <div class="eyebrow" style="margin: 0;">// notebook</div>
-      <a href="https://code-ballads.net/">code-ballads.net</a>
+  <!-- Deploy to web -->
+  <section class="webdeploy">
+    <div class="webdeploy-grid">
+      <div>
+        <div class="eyebrow webdeploy-eyebrow">// pyodide · webassembly</div>
+        <h2>Deploy Python apps<br />to the web.</h2>
+        <p class="webdeploy-sub">No React. No CSS. No server. No fuss.</p>
+        <p>
+          The same source runs as a desktop binary or as a web app that loads entirely in the browser via Pyodide.
+          No rewrite, no server, no HTML to author. iOS and Android will happily run those web apps.
+        </p>
+        <p class="webdeploy-aside">
+          <strong>Same code. No HTML, no server.</strong>
+          A unique &amp; powerful combination.
+        </p>
+        <div class="webdeploy-cta-row">
+          <a href="/playground/" class="webdeploy-cta">Open the playground →</a>
+          <span class="webdeploy-meta">/playground/  ·  runs in your browser</span>
+        </div>
+      </div>
+
+      <button type="button" class="webdeploy-window" id="webdeployZoom" aria-label="Enlarge screenshot">
+        <div class="webdeploy-chrome">
+          <span class="dot" style="background:#ff5f56"></span>
+          <span class="dot" style="background:#ffbd2e"></span>
+          <span class="dot" style="background:#27c93f"></span>
+          <span class="webdeploy-url">imgui-bundle.pages.dev/playground/</span>
+          <span class="webdeploy-zoom-hint">click to enlarge</span>
+        </div>
+        <div class="webdeploy-image-wrap">
+          <img src="assets/pyodide_example_pendulum.jpg"
+               alt="Double pendulum playground running entirely in the browser via Pyodide — Python source on the left, interactive UI in the middle, animation on the right"
+               class="webdeploy-image" />
+        </div>
+      </button>
     </div>
   </section>
 
@@ -1366,7 +1293,7 @@ hello_imgui.run(gui, window_title=<span class="s">"Fruit Picker"</span>)</pre>
     </div>
     <div class="footer-bottom">
       <span>© Pascal Thomet - MIT licensed</span>
-      <span>imgui-bundle.pagess.dev</span>
+      <span>imgui-bundle.pages.dev</span>
     </div>
   </footer>
 
