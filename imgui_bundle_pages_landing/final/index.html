@@ -354,21 +354,26 @@
   .philosophy p:last-child { margin-bottom: 0; }
 
   .philo-callout {
-    margin-top: 28px;
-    padding: 14px 18px;
+    margin-top: 56px;
+    padding: 22px 28px;
     border-left: 2px solid var(--accent);
     background: rgba(251, 209, 65, 0.04);
     border-radius: 0 6px 6px 0;
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 40px;
+    align-items: center;
   }
+  .philo-callout-text { min-width: 0; }
   .philo-callout-label {
     font-family: var(--mono); font-size: 11px;
     color: var(--accent);
     letter-spacing: 0.1em; text-transform: uppercase;
-    margin-bottom: 6px;
+    margin-bottom: 8px;
   }
   .philo-callout-body {
-    font-size: 14px !important;
-    line-height: 1.55 !important;
+    font-size: 15px !important;
+    line-height: 1.6 !important;
     color: var(--ink-dim) !important;
     margin: 0 !important;
   }
@@ -388,6 +393,40 @@
     text-decoration: none;
   }
   .philo-callout-link:hover { filter: brightness(1.15); }
+  .philo-callout-figure {
+    display: block;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    background: var(--bg-inset);
+    border: 1px solid var(--border-bright);
+    border-radius: 6px;
+    overflow: hidden;
+    cursor: zoom-in;
+    position: relative;
+    transition: border-color .15s;
+  }
+  .philo-callout-figure:hover { border-color: var(--accent); }
+  .philo-callout-figure:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .philo-callout-figure img {
+    width: 100%; height: auto;
+    display: block;
+  }
+  .philo-callout-zoom {
+    position: absolute;
+    top: 8px; right: 10px;
+    font-family: var(--mono); font-size: 10px;
+    color: #0d1117;
+    background: rgba(251, 209, 65, 0.92);
+    padding: 3px 8px;
+    border-radius: 4px;
+    letter-spacing: 0.04em;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity .15s;
+  }
+  .philo-callout-figure:hover .philo-callout-zoom,
+  .philo-callout-figure:focus-visible .philo-callout-zoom { opacity: 1; }
 
   .codecard {
     position: relative;
@@ -398,6 +437,7 @@
     border-radius: 10px;
     overflow: hidden;
     box-shadow: 0 20px 60px -20px rgba(0,0,0,0.6);
+    position: relative;
   }
   .codewindow-bar {
     background: var(--bg-elev);
@@ -421,17 +461,16 @@
   .codewindow .n { color: #79c0ff; }
   .codewindow .c { color: #8b949e; }
 
-  .resulting-app {
-    display: flex; align-items: center; gap: 24px;
-    margin-top: 28px; margin-left: 80px;
-    flex-wrap: wrap;
-  }
   .fruit-picker {
-    border-radius: 8px; overflow: hidden;
-    box-shadow: 0 8px 30px rgba(0,0,0,0.4), 0 0 0 1px rgba(255,255,255,0.04);
+    position: absolute;
+    top: 42px;
+    right: 10px;
+    width: 220px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.55), 0 0 0 1px rgba(255,255,255,0.05);
     background: #1f1f1f;
-    width: 240px;
-    flex-shrink: 0;
+    z-index: 1;
   }
   .fruit-chrome {
     background: #2a2a2a;
@@ -454,21 +493,6 @@
   }
   .fruit-list > div { padding: 3px 8px; }
   .fruit-list > div.sel { background: #3a4d6e; color: #fff; }
-  .resulting-caption {
-    flex: 1; display: flex; align-items: center; gap: 14px;
-    min-width: 200px;
-  }
-  .resulting-rule {
-    width: 40px; height: 1px; background: var(--border-bright);
-    flex-shrink: 0;
-  }
-  .resulting-text {
-    font-family: var(--mono); font-size: 11.5px;
-    color: var(--ink-dim);
-    letter-spacing: 0.06em;
-    line-height: 1.5;
-  }
-  .resulting-text .slash { color: var(--accent2); }
 
   /* ---------- Built on Dear ImGui ---------- */
   .builton {
@@ -871,9 +895,12 @@
     .grid-3 { grid-template-columns: 1fr; }
     .apps-grid { grid-template-columns: repeat(2, 1fr); }
     .philosophy-grid { grid-template-columns: 1fr; gap: 32px; }
+    .philo-callout { grid-template-columns: 1fr; gap: 20px; margin-top: 40px; padding: 18px 20px; }
     .webdeploy-grid { grid-template-columns: 1fr; gap: 32px; }
 
-    .resulting-app { margin-left: 0; }
+    /* On narrow viewports the floating picker would cover the code; hide it
+       there. The code block alone still carries the section's message. */
+    .fruit-picker { display: none; }
 
     .footer-grid {
       grid-template-columns: 1fr 1fr;
@@ -993,16 +1020,6 @@
           In the age of generated code, brain time is the scarce resource.
           Readability wins.
         </p>
-
-        <div class="philo-callout">
-          <div class="philo-callout-label">// even less code</div>
-          <p class="philo-callout-body">
-            Annotate a Python function and
-            <a href="https://pthom.github.io/fiatlight/" target="_blank" rel="noopener">fiatlight</a>
-            builds the UI for you — sliders, file pickers, dropdowns, live pipelines. Zero UI code.
-          </p>
-          <a class="philo-callout-link" href="https://pthom.github.io/fiatlight/" target="_blank" rel="noopener">fiatlight →</a>
-        </div>
       </div>
       <div class="codecard">
         <div class="codewindow">
@@ -1025,9 +1042,6 @@ items = [<span class="s">"Apple"</span>, <span class="s">"Banana"</span>, <span 
     imgui.text(<span class="s">f"You selected: {items[selected_idx]}"</span>)
 
 hello_imgui.run(gui, window_title=<span class="s">"Fruit Picker"</span>)</pre>
-        </div>
-
-        <div class="resulting-app">
           <div class="fruit-picker">
             <div class="fruit-chrome">
               <span class="dot" style="background:#ff5f56"></span>
@@ -1043,12 +1057,6 @@ hello_imgui.run(gui, window_title=<span class="s">"Fruit Picker"</span>)</pre>
                 <div>Cherry</div>
               </div>
               <div style="margin-top:8px;font-size:12px">You selected: Apple</div>
-            </div>
-          </div>
-          <div class="resulting-caption">
-            <div class="resulting-rule"></div>
-            <div class="resulting-text">
-              <span class="slash">// </span>the resulting app,<br />running natively
             </div>
           </div>
         </div>
@@ -1088,6 +1096,44 @@ hello_imgui.run(gui, window_title=<span class="s">"Fruit Picker"</span>)</pre>
           <span class="arrow">→</span>
         </div>
       </a>
+    </div>
+  </section>
+
+  <!-- Deploy to web -->
+  <section class="webdeploy">
+    <div class="webdeploy-grid">
+      <div>
+        <div class="eyebrow webdeploy-eyebrow">// pyodide · webassembly</div>
+        <h2>Deploy Python apps<br />to the web.</h2>
+        <p class="webdeploy-sub">No React. No CSS. No server. No fuss.</p>
+        <p>
+          The same source runs as a desktop binary or as a web app that loads entirely in the browser via Pyodide.
+          No rewrite, no server, no HTML to author. iOS and Android will happily run those web apps.
+        </p>
+        <p class="webdeploy-aside">
+          <strong>Same code. No HTML, no server.</strong>
+          A unique &amp; powerful combination.
+        </p>
+        <div class="webdeploy-cta-row">
+          <a href="/playground/" class="webdeploy-cta">Open the playground →</a>
+          <span class="webdeploy-meta">/playground/  ·  runs in your browser</span>
+        </div>
+      </div>
+
+      <button type="button" class="webdeploy-window" data-zoom-src="assets/pyodide_example_pendulum.jpg" aria-label="Enlarge screenshot">
+        <div class="webdeploy-chrome">
+          <span class="dot" style="background:#ff5f56"></span>
+          <span class="dot" style="background:#ffbd2e"></span>
+          <span class="dot" style="background:#27c93f"></span>
+          <span class="webdeploy-url">imgui-bundle.pages.dev/playground/</span>
+          <span class="webdeploy-zoom-hint">click to enlarge</span>
+        </div>
+        <div class="webdeploy-image-wrap">
+          <img src="assets/pyodide_example_pendulum.jpg"
+               alt="Double pendulum playground running entirely in the browser via Pyodide — Python source on the left, interactive UI in the middle, animation on the right"
+               class="webdeploy-image" />
+        </div>
+      </button>
     </div>
   </section>
 
@@ -1180,6 +1226,24 @@ hello_imgui.run(gui, window_title=<span class="s">"Fruit Picker"</span>)</pre>
         </div>
       </div>
     </div>
+
+    <div class="philo-callout">
+      <div class="philo-callout-text">
+        <div class="philo-callout-label">// even less code with fiatlight</div>
+        <p class="philo-callout-body">
+          Annotate a Python function and
+          <a href="https://pthom.github.io/fiatlight/" target="_blank" rel="noopener">fiatlight</a>
+          builds the UI for you — sliders, file pickers, dropdowns, live pipelines. Zero UI code.
+        </p>
+        <a class="philo-callout-link" href="https://pthom.github.io/fiatlight/" target="_blank" rel="noopener">fiatlight →</a>
+      </div>
+      <button type="button" class="philo-callout-figure" data-zoom-src="assets/fiatlight_pipeline.jpg" aria-label="Enlarge fiatlight pipeline screenshot">
+        <img src="assets/fiatlight_pipeline.jpg"
+             alt="fiatlight: 4 lines of Python build a 3-node computer-vision pipeline (read image → Canny → dilate)" />
+        <span class="philo-callout-zoom">click to enlarge</span>
+      </button>
+    </div>
+
   </section>
 
   <!-- Applications -->
@@ -1261,44 +1325,6 @@ hello_imgui.run(gui, window_title=<span class="s">"Fruit Picker"</span>)</pre>
     </div>
   </section>
 
-  <!-- Deploy to web -->
-  <section class="webdeploy">
-    <div class="webdeploy-grid">
-      <div>
-        <div class="eyebrow webdeploy-eyebrow">// pyodide · webassembly</div>
-        <h2>Deploy Python apps<br />to the web.</h2>
-        <p class="webdeploy-sub">No React. No CSS. No server. No fuss.</p>
-        <p>
-          The same source runs as a desktop binary or as a web app that loads entirely in the browser via Pyodide.
-          No rewrite, no server, no HTML to author. iOS and Android will happily run those web apps.
-        </p>
-        <p class="webdeploy-aside">
-          <strong>Same code. No HTML, no server.</strong>
-          A unique &amp; powerful combination.
-        </p>
-        <div class="webdeploy-cta-row">
-          <a href="/playground/" class="webdeploy-cta">Open the playground →</a>
-          <span class="webdeploy-meta">/playground/  ·  runs in your browser</span>
-        </div>
-      </div>
-
-      <button type="button" class="webdeploy-window" id="webdeployZoom" aria-label="Enlarge screenshot">
-        <div class="webdeploy-chrome">
-          <span class="dot" style="background:#ff5f56"></span>
-          <span class="dot" style="background:#ffbd2e"></span>
-          <span class="dot" style="background:#27c93f"></span>
-          <span class="webdeploy-url">imgui-bundle.pages.dev/playground/</span>
-          <span class="webdeploy-zoom-hint">click to enlarge</span>
-        </div>
-        <div class="webdeploy-image-wrap">
-          <img src="assets/pyodide_example_pendulum.jpg"
-               alt="Double pendulum playground running entirely in the browser via Pyodide — Python source on the left, interactive UI in the middle, animation on the right"
-               class="webdeploy-image" />
-        </div>
-      </button>
-    </div>
-  </section>
-
   <!-- Footer -->
   <footer class="footer">
     <div class="footer-grid">
@@ -1345,10 +1371,10 @@ hello_imgui.run(gui, window_title=<span class="s">"Fruit Picker"</span>)</pre>
 
 </div>
 
-<!-- Lightbox for the pyodide screenshot -->
+<!-- Shared lightbox -->
 <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Enlarged screenshot">
   <button type="button" class="lightbox-close" id="lightboxClose" aria-label="Close">close ✕</button>
-  <img src="assets/pyodide_example_pendulum.jpg" alt="Double pendulum playground running entirely in the browser via Pyodide" />
+  <img id="lightboxImg" src="" alt="" />
 </div>
 
 <script>
@@ -1388,21 +1414,31 @@ hello_imgui.run(gui, window_title=<span class="s">"Fruit Picker"</span>)</pre>
     });
   })();
 
-  // Lightbox for the pyodide screenshot
+  // Shared lightbox: any element with [data-zoom-src] opens its image
   (function () {
-    const trigger = document.getElementById('webdeployZoom');
     const overlay = document.getElementById('lightbox');
+    const overlayImg = document.getElementById('lightboxImg');
     const closeBtn = document.getElementById('lightboxClose');
-    if (!trigger || !overlay) return;
-    const open = () => {
+    if (!overlay || !overlayImg) return;
+    const open = (src, alt) => {
+      overlayImg.src = src;
+      overlayImg.alt = alt || '';
       overlay.classList.add('open');
       document.body.style.overflow = 'hidden';
     };
     const close = () => {
       overlay.classList.remove('open');
       document.body.style.overflow = '';
+      overlayImg.src = '';
     };
-    trigger.addEventListener('click', open);
+    document.querySelectorAll('[data-zoom-src]').forEach((el) => {
+      el.addEventListener('click', (e) => {
+        e.preventDefault();
+        const src = el.getAttribute('data-zoom-src');
+        const inner = el.querySelector('img');
+        open(src, inner ? inner.alt : '');
+      });
+    });
     overlay.addEventListener('click', (e) => {
       if (e.target === overlay) close();
     });
