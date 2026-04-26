@@ -772,7 +772,41 @@
     padding: 24px 24px 22px;
     display: flex; flex-direction: column; gap: 14px;
   }
-  .app-icon { width: 60px; height: 40px; color: var(--app-color); }
+  .app-video {
+    display: block;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background: var(--bg-inset);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+    cursor: zoom-in;
+    position: relative;
+    transition: border-color .15s;
+  }
+  .app-video:hover { border-color: var(--app-color); }
+  .app-video:focus-visible { outline: 2px solid var(--app-color); outline-offset: 2px; }
+  .app-video video {
+    width: 100%; height: auto; display: block;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+  }
+  .app-video-zoom {
+    position: absolute;
+    top: 8px; right: 10px;
+    font-family: var(--mono); font-size: 10px;
+    color: #0d1117;
+    background: rgba(251, 209, 65, 0.92);
+    padding: 3px 8px;
+    border-radius: 4px;
+    letter-spacing: 0.04em;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity .15s;
+  }
+  .app-video:hover .app-video-zoom,
+  .app-video:focus-visible .app-video-zoom { opacity: 1; }
   .app-card h3 {
     font-size: 18px; font-weight: 600;
     color: var(--ink);
@@ -1215,13 +1249,12 @@ hello_imgui.run(gui, window_title=<span class="s">"Fruit Picker"</span>, window_
     </div>
     <div class="apps-grid">
       <div class="app-card" style="--app-color: var(--accent3);">
-        <div class="app-icon">
-          <svg viewBox="0 0 60 40" fill="none" stroke="currentColor" stroke-width="1.5">
-            <polyline points="2,30 12,18 22,24 32,8 42,16 58,4" />
-            <polyline points="2,36 12,28 22,32 32,22 42,26 58,18" opacity="0.5" />
-            <line x1="2" y1="38" x2="58" y2="38" stroke-width="0.5" />
-          </svg>
-        </div>
+        <button type="button" class="app-video" data-zoom-src="assets/demo_implot_implot3d.mp4" aria-label="Enlarge ImPlot / ImPlot3D demo video">
+          <video src="assets/demo_implot_implot3d.mp4"
+                 autoplay loop muted playsinline
+                 aria-label="ImPlot / ImPlot3D demo"></video>
+          <span class="app-video-zoom">click to enlarge</span>
+        </button>
         <div>
           <h3>Interactive 2D &amp; 3D plots</h3>
           <p>ImPlot and ImPlot3D — rotatable, zoomable, real-time. Stock prices, signals, scientific data.</p>
@@ -1230,13 +1263,12 @@ hello_imgui.run(gui, window_title=<span class="s">"Fruit Picker"</span>, window_
       </div>
 
       <div class="app-card" style="--app-color: var(--accent);">
-        <div class="app-icon">
-          <svg viewBox="0 0 60 40" fill="none" stroke="currentColor" stroke-width="1.5">
-            <path d="M2,28 Q15,18 30,24 T58,16" />
-            <path d="M2,34 Q15,26 30,30 T58,24" opacity="0.6" />
-            <path d="M2,22 Q15,12 30,18 T58,10" opacity="0.4" />
-          </svg>
-        </div>
+        <button type="button" class="app-video" data-zoom-src="assets/demo_gpu.mp4" aria-label="Enlarge GPU rendering demo video">
+          <video src="assets/demo_gpu.mp4"
+                 autoplay loop muted playsinline
+                 aria-label="GPU-accelerated rendering demo"></video>
+          <span class="app-video-zoom">click to enlarge</span>
+        </button>
         <div>
           <h3>GPU-accelerated rendering</h3>
           <p>Render directly on the GPU. Blend custom shaders and 3D content into your UI at 120 FPS.</p>
@@ -1245,15 +1277,12 @@ hello_imgui.run(gui, window_title=<span class="s">"Fruit Picker"</span>, window_
       </div>
 
       <div class="app-card" style="--app-color: var(--accent2);">
-        <div class="app-icon">
-          <svg viewBox="0 0 60 40" fill="none" stroke="currentColor" stroke-width="1.5">
-            <rect x="6" y="8" width="20" height="24" />
-            <circle cx="14" cy="16" r="2.5" />
-            <path d="M6,28 L12,22 L18,26 L26,18" />
-            <rect x="34" y="8" width="20" height="24" />
-            <circle cx="44" cy="20" r="6" stroke-dasharray="2 2" />
-          </svg>
-        </div>
+        <button type="button" class="app-video" data-zoom-src="assets/demo_immvision.mp4" aria-label="Enlarge ImmVision demo video">
+          <video src="assets/demo_immvision.mp4"
+                 autoplay loop muted playsinline
+                 aria-label="ImmVision image analysis demo"></video>
+          <span class="app-video-zoom">click to enlarge</span>
+        </button>
         <div>
           <h3>Image analysis</h3>
           <p>ImmVision — display, debug and inspect RGB and float images. Zoom, pan, pixel inspection, colormaps.</p>
@@ -1262,18 +1291,12 @@ hello_imgui.run(gui, window_title=<span class="s">"Fruit Picker"</span>, window_
       </div>
 
       <div class="app-card" style="--app-color: #c084fc;">
-        <div class="app-icon">
-          <svg viewBox="0 0 60 40" fill="none" stroke="currentColor" stroke-width="1.5">
-            <rect x="2" y="14" width="14" height="12" rx="1" />
-            <rect x="24" y="6" width="14" height="12" rx="1" />
-            <rect x="24" y="22" width="14" height="12" rx="1" />
-            <rect x="46" y="14" width="12" height="12" rx="1" />
-            <path d="M16,20 Q20,12 24,12" />
-            <path d="M16,20 Q20,28 24,28" />
-            <path d="M38,12 Q42,16 46,20" />
-            <path d="M38,28 Q42,24 46,20" />
-          </svg>
-        </div>
+        <button type="button" class="app-video" data-zoom-src="assets/demo_node_fiatlight.mp4" aria-label="Enlarge node editor / fiatlight demo video">
+          <video src="assets/demo_node_fiatlight.mp4"
+                 autoplay loop muted playsinline
+                 aria-label="Node editor / fiatlight demo"></video>
+          <span class="app-video-zoom">click to enlarge</span>
+        </button>
         <div>
           <h3>Visual node editors</h3>
           <p>Explore ideas in graph form — connect functions, see data flow, build pipelines visually.</p>
