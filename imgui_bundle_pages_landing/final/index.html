@@ -120,7 +120,6 @@
     letter-spacing: -0.035em; color: var(--ink);
     margin: 0; font-size: 40px;
   }
-  .hero h1 .accent { color: var(--accent); }
   .hero p.lede {
     font-size: 18px; line-height: 1.55;
     color: var(--ink-dim); margin: 28px 0 0; max-width: 520px;
@@ -164,6 +163,19 @@
     transition: filter .15s;
   }
   .cta:hover { filter: brightness(1.08); }
+  .cta-secondary {
+    color: var(--ink-dim);
+    font-size: 14px;
+    text-decoration: none;
+    padding: 14px 6px;
+    display: flex; align-items: center; gap: 6px;
+    border-bottom: 1px solid transparent;
+    transition: color .15s, border-color .15s;
+  }
+  .cta-secondary:hover {
+    color: var(--accent3);
+    border-bottom-color: var(--accent3);
+  }
 
   .compat {
     margin-top: 28px;
@@ -241,7 +253,7 @@
     text-transform: uppercase;
   }
   .h2 {
-    font-size: 40px; font-weight: 700;
+    font-size: 32px; font-weight: 700;
     color: var(--ink);
     margin: 0 0 48px;
     letter-spacing: -0.02em;
@@ -303,7 +315,7 @@
   }
   .philo-eyebrow { color: var(--accent); }
   .philosophy h2 {
-    font-size: 44px; font-weight: 700;
+    font-size: 32px; font-weight: 700;
     color: var(--ink);
     margin: 0 0 24px;
     letter-spacing: -0.025em;
@@ -467,7 +479,7 @@
     max-width: 760px;
   }
   .builton h2 {
-    font-size: 36px; font-weight: 700;
+    font-size: 32px; font-weight: 700;
     color: var(--ink);
     margin: 0 0 16px;
     letter-spacing: -0.02em;
@@ -500,6 +512,48 @@
   }
   .builton-cta:hover { border-color: var(--accent3); background: var(--bg); }
 
+  /* ---------- Compare ---------- */
+  .compare {
+    padding: 56px 32px;
+    border-bottom: 1px solid var(--border);
+    background: var(--bg-inset);
+  }
+  .compare-inner { max-width: 820px; }
+  .compare h2 {
+    font-size: 32px; font-weight: 700;
+    color: var(--ink);
+    margin: 0 0 16px;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+  }
+  .compare h2 .accent3 { color: var(--accent3); }
+  .compare-eyebrow { color: var(--ink-muted); }
+  .compare p {
+    font-size: 15px; line-height: 1.65;
+    color: var(--ink-dim);
+    margin: 0 0 16px;
+  }
+  .compare p strong { color: var(--ink); font-weight: 600; }
+  .compare-aside {
+    border-left: 2px solid var(--border-bright);
+    padding-left: 14px;
+    color: var(--ink-muted);
+    font-size: 14px;
+  }
+  .compare-cta {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: var(--mono); font-size: 13px;
+    color: var(--ink);
+    text-decoration: none;
+    background: var(--bg-elev);
+    border: 1px solid var(--border-bright);
+    border-radius: 8px;
+    padding: 10px 16px;
+    margin-top: 8px;
+    transition: border-color .15s, background .15s;
+  }
+  .compare-cta:hover { border-color: var(--accent3); background: var(--bg); }
+
   /* ---------- Deploy to web ---------- */
   .webdeploy {
     padding: 72px 32px;
@@ -515,7 +569,7 @@
   .webdeploy-eyebrow { color: var(--accent2); }
   .webdeploy h2 {
     font-family: var(--sans);
-    font-size: 40px; font-weight: 700;
+    font-size: 32px; font-weight: 700;
     color: var(--ink);
     margin: 0 0 16px;
     letter-spacing: -0.025em;
@@ -666,12 +720,98 @@
     margin-bottom: 48px; gap: 16px; flex-wrap: wrap;
   }
   .eco-header h2 {
-    font-size: 40px; font-weight: 700;
+    font-size: 32px; font-weight: 700;
     color: var(--ink); margin: 0;
     letter-spacing: -0.02em;
   }
   .eco-header .note {
     font-family: var(--mono); font-size: 12px; color: var(--ink-muted);
+  }
+  .eco-stack {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin: -24px 0 56px;
+    padding: 22px 24px 96px;
+    background: rgba(255, 255, 255, 0.015);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+  }
+  .eco-stack-node,
+  .eco-stack-here {
+    display: flex; flex-direction: column; align-items: center;
+    gap: 4px;
+    padding: 12px 18px;
+    border: 1px solid color-mix(in srgb, var(--node-color) 35%, var(--border-bright));
+    border-radius: 8px;
+    background: color-mix(in srgb, var(--node-color) 6%, var(--bg-elev));
+    color: var(--ink);
+    text-decoration: none;
+    min-width: 180px;
+    transition: border-color .15s, transform .15s;
+  }
+  .eco-stack-node:hover { border-color: var(--node-color); transform: translateY(-1px); }
+  .eco-stack-name {
+    font-weight: 600; font-size: 15px; letter-spacing: -0.01em;
+    color: var(--node-color);
+  }
+  .eco-stack-role {
+    font-family: var(--mono); font-size: 10.5px;
+    color: var(--ink-muted);
+    letter-spacing: 0.04em;
+    text-transform: lowercase;
+  }
+  .eco-stack-here { position: relative; }
+  .eco-stack-youarehere {
+    position: absolute; top: -10px;
+    font-family: var(--mono); font-size: 9.5px;
+    background: var(--accent); color: #0d1117;
+    padding: 2px 8px; border-radius: 999px;
+    letter-spacing: 0.06em; text-transform: uppercase;
+  }
+  .eco-stack-arrow {
+    font-family: var(--mono); font-size: 18px;
+    color: var(--ink-muted);
+  }
+  .eco-stack-litgen {
+    position: absolute;
+    left: 50%; bottom: 18px;
+    transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center;
+    gap: 2px;
+    padding: 8px 14px;
+    border: 1px dashed color-mix(in srgb, var(--node-color) 50%, var(--border-bright));
+    border-radius: 8px;
+    background: color-mix(in srgb, var(--node-color) 6%, var(--bg-elev));
+    color: var(--ink);
+    text-decoration: none;
+    transition: border-color .15s, transform .15s;
+  }
+  .eco-stack-litgen:hover { border-style: solid; border-color: var(--node-color); }
+  .eco-stack-litgen-line {
+    position: absolute;
+    left: 50%; top: -22px;
+    width: 1px; height: 22px;
+    border-left: 1px dashed color-mix(in srgb, var(--node-color) 50%, var(--border-bright));
+  }
+  @media (max-width: 700px) {
+    .eco-stack { flex-direction: column; padding-bottom: 22px; gap: 8px; }
+    .eco-stack-arrow { transform: rotate(90deg); }
+    .eco-stack-litgen { position: static; transform: none; margin-top: 8px; }
+    .eco-stack-litgen-line { display: none; }
+  }
+  .eco-roles {
+    display: flex; flex-direction: column; align-items: flex-end;
+    gap: 4px;
+  }
+  .eco-role-rel {
+    font-family: var(--mono); font-size: 9.5px;
+    color: var(--ink-muted);
+    letter-spacing: 0.06em;
+    text-transform: lowercase;
   }
   .eco-card {
     background: var(--bg-elev);
@@ -757,7 +897,7 @@
     margin-bottom: 48px;
   }
   .apps-header h2 {
-    font-size: 40px; font-weight: 700; color: var(--ink); margin: 0;
+    font-size: 32px; font-weight: 700; color: var(--ink); margin: 0;
     letter-spacing: -0.02em;
   }
   .apps-grid {
@@ -882,13 +1022,15 @@
     .pillars, .ecosystem, .apps { padding: 48px 20px; }
     .philosophy { padding: 48px 20px; }
     .builton { padding: 48px 20px; }
+    .compare { padding: 48px 20px; }
+    .compare h2 { font-size: 28px; }
     .webdeploy { padding: 48px 20px; }
     .footer { padding: 40px 20px 24px; }
 
-    .h2, .eco-header h2, .apps-header h2 { font-size: 30px; margin-bottom: 32px; }
-    .philosophy h2 { font-size: 32px; }
+    .h2, .eco-header h2, .apps-header h2 { font-size: 28px; margin-bottom: 32px; }
+    .philosophy h2 { font-size: 28px; }
     .builton h2 { font-size: 28px; }
-    .webdeploy h2 { font-size: 30px; }
+    .webdeploy h2 { font-size: 28px; }
 
     .grid-3 { grid-template-columns: 1fr; }
     .apps-grid { grid-template-columns: repeat(2, 1fr); }
@@ -950,7 +1092,7 @@
         <h1>
           Stop fighting<br />
           GUI frameworks.<br />
-          <span class="accent">Start building.</span>
+          <span>Start building.</span>
         </h1>
         <p class="lede">
           Interactive Python &amp; C++ apps for desktop, mobile, and web.
@@ -963,6 +1105,7 @@
             <span class="copy" id="copyLabel">copy</span>
           </button>
           <a href="/playground/" class="cta">Try in Playground →</a>
+          <a href="/doc/" class="cta-secondary">Read the docs →</a>
         </div>
 
         <div class="compat">
@@ -1050,193 +1193,29 @@ hello_imgui.run(gui, window_title=<span class="s">"Fruit Picker"</span>, window_
     </div>
   </section>
 
-  <!-- Pillars -->
-  <section class="pillars">
-    <div class="eyebrow">// START HERE</div>
-    <h2 class="h2">Three ways in.</h2>
-    <div class="grid-3">
-      <a class="pillar" href="/doc/" style="--pillar-color: var(--accent3);">
-<!--        <div class="cmd"><span class="muted">$ </span>open &#45;&#45;doc</div>-->
-        <h3>Documentation</h3>
-        <p>What it is, how to start, full API references for every library in the bundle.</p>
-        <div class="pillar-meta">
-          <span>/doc/  ·  Markdown · MyST</span>
-          <span class="arrow">→</span>
-        </div>
-      </a>
-      <a class="pillar" href="/explorer/" style="--pillar-color: var(--accent);">
-<!--        <div class="cmd"><span class="muted">$ </span>open &#45;&#45;explorer</div>-->
-        <h3>Interactive Explorer</h3>
-        <p>Browse demos, see the source, try every widget. The reference manual that runs.</p>
-        <div class="pillar-meta">
-          <span>/explorer/  ·  WebAssembly</span>
-          <span class="arrow">→</span>
-        </div>
-      </a>
-      <a class="pillar" href="/playground/" style="--pillar-color: var(--accent2);">
-<!--        <div class="cmd"><span class="muted">$ </span>open &#45;&#45;playground</div>-->
-        <h3>Python Playground</h3>
-        <p>Live Python sandbox with ready-to-run demos. Edit the code, see results instantly.</p>
-        <div class="pillar-meta">
-          <span>/playground/  ·  Pyodide</span>
-          <span class="arrow">→</span>
-        </div>
-      </a>
-    </div>
-  </section>
-
-  <!-- Deploy to web -->
-  <section class="webdeploy">
-    <div class="webdeploy-grid">
-      <div>
-        <div class="eyebrow webdeploy-eyebrow">// pyodide · webassembly</div>
-        <h2>Deploy Python apps<br />to the web.</h2>
-        <p class="webdeploy-sub">Same code. No HTML, no server.</p>
-        <p>
-          The same source runs as a desktop binary or as a web app that runs entirely in the browser via Pyodide.
-          iOS and Android can run it too.
-        </p>
-        <p>
-          Pyodide startup adds an 8 MB initial download; after that, the app runs at about 60 FPS on the GPU, fully client-side.
-        </p>
-<!--        <p class="webdeploy-aside">-->
-<!--          <strong>Desktop performance. Browser distribution.</strong>-->
-<!--        </p>-->
-        <div class="webdeploy-cta-row">
-          <a href="/playground/" class="webdeploy-cta">Open the playground →</a>
-          <span class="webdeploy-meta">/playground/  ·  runs in your browser</span>
-        </div>
-      </div>
-
-      <button type="button" class="webdeploy-window" data-zoom-src="assets/pyodide_example_pendulum.mp4" aria-label="Enlarge screenshot">
-        <div class="webdeploy-chrome">
-          <span class="dot" style="background:#ff5f56"></span>
-          <span class="dot" style="background:#ffbd2e"></span>
-          <span class="dot" style="background:#27c93f"></span>
-          <span class="webdeploy-url">imgui-bundle.pages.dev/playground/</span>
-          <span class="webdeploy-zoom-hint">click to enlarge</span>
-        </div>
-        <div class="webdeploy-image-wrap">
-          <video src="assets/pyodide_example_pendulum.mp4"
-                 class="webdeploy-image"
-                 autoplay loop muted playsinline
-                 aria-label="Double pendulum playground running entirely in the browser via Pyodide — Python source on the left, interactive UI in the middle, animation on the right"></video>
-        </div>
-        <span class="webdeploy-meta">
-          Python source (left) → live UI (right), running in the browser tab
-        </span>
-      </button>
-    </div>
-  </section>
-
-  <!-- Powered by Dear ImGui -->
-  <section class="builton">
-    <div class="builton-credit">
-      <div class="eyebrow builton-eyebrow">// foundation</div>
-      <h2>Powered by <span class="accent3">Dear ImGui</span>.</h2>
+  <!-- How it compares -->
+  <section class="compare">
+    <div class="compare-inner">
+      <div class="eyebrow compare-eyebrow">// not to be confused with</div>
+      <h2>How does it compare?</h2>
+      <h3>Wait, isn't there Dear PyGui?</h3>
       <p>
-        Dear ImGui Bundle stands on the shoulders of
-        <a class="builton-link" href="https://github.com/ocornut/imgui" target="_blank" rel="noopener">Dear ImGui</a>,
-        a battle-tested, fast, and widely adopted immediate-mode GUI library created by
-        <a class="builton-link" href="https://github.com/ocornut" target="_blank" rel="noopener">Omar Cornut</a>, as well
-        as several of is most popular addons such as
-        <a class="builton-link" href="https://github.com/epezent/implot" target="_blank" rel="noopener">ImPlot</a>,
-        <a class="builton-link" href="https://github.com/brenocq/implot3d" target="_blank" rel="noopener">ImPlot3D</a>,
-        <a class="builton-link" href="https://github.com/pthom/immvision" target="_blank" rel="noopener">ImmVision</a>,
-        and
-        <a class="builton-link" href=https://github.com/thedmd/imgui-node-editor" target="_blank" rel="noopener">imgui-node-editor</a>
-        (this list is incomplete as there are more than 20 libraries).
+        Different project, different paradigm.
+        Dear PyGui provides retained-mode wrappers around ImGui: you build a widget tree once and wire callbacks.
       </p>
-      <a class="builton-cta" href="https://github.com/ocornut/imgui" target="_blank" rel="noopener">
-        <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8Z" /></svg>
-        ocornut/imgui
+      <p>
+        Dear ImGui Bundle brings true <a class="builton-link" href="https://imgui-bundle.pages.dev/doc/intro/imm-gui"><strong>immediate mode</strong></a> to Python.
+        It also tracks the latest Dear ImGui release closely (thanks to auto-generated bindings), and runs in the browser via Pyodide.
+      </p>
+      <h3>Coming from a web-first stack (NiceGUI, Streamlit, Gradio)?</h3>
+      <p>
+        Those shine for dashboards and ML demos. Pick Dear ImGui Bundle when you need native
+        performance, offline desktop binary, or Web apps at 60 FPS without dealing with HTML and a distant server.
+      </p>
+      <a class="compare-cta" href="https://imgui-bundle.pages.dev/doc/intro/compare">
+        Full side-by-side comparison →
       </a>
     </div>
-  </section>
-
-  <!-- Ecosystem -->
-  <section class="ecosystem">
-    <div class="eyebrow">// Ecosystem</div>
-    <div class="eco-header">
-      <h2>The ecosystem.</h2>
-      <span class="note">// four libraries · one philosophy</span>
-    </div>
-    <div class="grid-3">
-      <div class="eco-card" data-href="https://pthom.github.io/hello_imgui/" tabindex="0" role="link" style="--eco-color: #58a6ff;">
-        <div class="eco-top">
-          <div class="eco-logobox"><img src="assets/logo_hello_imgui.png" alt="" /></div>
-          <span class="eco-role">engine</span>
-        </div>
-        <div>
-          <h3>Hello ImGui</h3>
-          <p class="tag">Dear ImGui apps made simple — desktop, mobile, web from one codebase.</p>
-          <p class="sub">Minimal code. Maximally readable.</p>
-        </div>
-        <div class="eco-foot">
-          <span>$ open documentation →</span>
-          <a class="eco-repo" href="https://github.com/pthom/hello_imgui" target="_blank" rel="noopener" title="Hello ImGui on GitHub">
-            <svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8Z" /></svg>
-            <span>repo</span>
-          </a>
-        </div>
-      </div>
-
-      <div class="eco-card" data-href="https://pthom.github.io/fiatlight/" tabindex="0" role="link" style="--eco-color: #fbd141;">
-        <div class="eco-top">
-          <div class="eco-logobox"><img src="assets/logo_fiatlight.jpg" alt="" /></div>
-          <span class="eco-role">built on top</span>
-        </div>
-        <div>
-          <h3>fiatlight</h3>
-          <p class="tag">Turn Python functions into interactive apps in one line.</p>
-          <p class="sub">Visual pipelines. Persistent state. Zero UI code.</p>
-        </div>
-        <div class="eco-foot">
-          <span>$ open documentation →</span>
-          <a class="eco-repo" href="https://github.com/pthom/fiatlight" target="_blank" rel="noopener" title="fiatlight on GitHub">
-            <svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8Z" /></svg>
-            <span>repo</span>
-          </a>
-        </div>
-      </div>
-
-      <div class="eco-card" data-href="https://pthom.github.io/litgen/" tabindex="0" role="link" style="--eco-color: #3fb950;">
-        <div class="eco-top">
-          <div class="eco-logobox"><img src="assets/logo_litgen.png" alt="" /></div>
-          <span class="eco-role">binding generator</span>
-        </div>
-        <div>
-          <h3>litgen</h3>
-          <p class="tag">Automatic Python bindings for C++ — readable and discoverable.</p>
-          <p class="sub">Battle-tested on 20+ libraries.</p>
-        </div>
-        <div class="eco-foot">
-          <span>$ open documentation →</span>
-          <a class="eco-repo" href="https://github.com/pthom/litgen" target="_blank" rel="noopener" title="litgen on GitHub">
-            <svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8Z" /></svg>
-            <span>repo</span>
-          </a>
-        </div>
-      </div>
-    </div>
-
-    <div class="philo-callout">
-      <div class="philo-callout-text">
-        <div class="philo-callout-label">// even less code with fiatlight</div>
-        <p class="philo-callout-body">
-          Annotate a Python function and
-          <a href="https://pthom.github.io/fiatlight/" target="_blank" rel="noopener">fiatlight</a>
-          builds the UI for you — sliders, file pickers, dropdowns, live pipelines. Zero UI code.
-        </p>
-        <a class="philo-callout-link" href="https://pthom.github.io/fiatlight/" target="_blank" rel="noopener">fiatlight →</a>
-      </div>
-      <button type="button" class="philo-callout-figure" data-zoom-src="assets/fiatlight_pipeline.jpg" aria-label="Enlarge fiatlight pipeline screenshot">
-        <img src="assets/fiatlight_pipeline.jpg"
-             alt="fiatlight: 4 lines of Python build a 3-node computer-vision pipeline (read image → Canny → dilate)"/>
-        <span class="philo-callout-zoom">click to enlarge</span>
-      </button>
-    </div>
-
   </section>
 
   <!-- Applications -->
@@ -1306,6 +1285,223 @@ hello_imgui.run(gui, window_title=<span class="s">"Fruit Picker"</span>, window_
 
     </div>
   </section>
+
+  <!-- Deploy to web -->
+  <section class="webdeploy">
+    <div class="webdeploy-grid">
+      <div>
+        <div class="eyebrow webdeploy-eyebrow">// pyodide · webassembly</div>
+        <h2>Deploy Python apps<br />to the web.</h2>
+        <p class="webdeploy-sub">Same code. No HTML, no server.</p>
+        <p>
+          The same source runs as a desktop binary or as a web app that runs entirely in the browser via Pyodide.
+          iOS and Android can run it too.
+        </p>
+        <p>
+          Pyodide startup adds an 8 MB initial download; after that, the app runs at about 60 FPS on the GPU, fully client-side.
+        </p>
+        <div class="webdeploy-cta-row">
+          <a href="/playground/" class="webdeploy-cta">Open the playground →</a>
+          <span class="webdeploy-meta">/playground/  ·  runs in your browser</span>
+        </div>
+      </div>
+
+      <button type="button" class="webdeploy-window" data-zoom-src="assets/pyodide_example_pendulum.mp4" aria-label="Enlarge screenshot">
+        <div class="webdeploy-chrome">
+          <span class="dot" style="background:#ff5f56"></span>
+          <span class="dot" style="background:#ffbd2e"></span>
+          <span class="dot" style="background:#27c93f"></span>
+          <span class="webdeploy-url">imgui-bundle.pages.dev/playground/</span>
+          <span class="webdeploy-zoom-hint">click to enlarge</span>
+        </div>
+        <div class="webdeploy-image-wrap">
+          <video src="assets/pyodide_example_pendulum.mp4"
+                 class="webdeploy-image"
+                 autoplay loop muted playsinline
+                 aria-label="Double pendulum playground running entirely in the browser via Pyodide — Python source on the left, interactive UI in the middle, animation on the right"></video>
+        </div>
+        <span class="webdeploy-meta">
+          Python source (left) → live UI (right), running in the browser tab
+        </span>
+      </button>
+    </div>
+  </section>
+
+  <!-- Pillars -->
+  <section class="pillars">
+    <div class="eyebrow">// where next</div>
+    <h2 class="h2">Three ways in.</h2>
+    <div class="grid-3">
+      <a class="pillar" href="/doc/" style="--pillar-color: var(--accent3);">
+        <h3>Documentation</h3>
+        <p>What it is, how to start, full API references for every library in the bundle.</p>
+        <div class="pillar-meta">
+          <span>/doc/  ·  Markdown · MyST</span>
+          <span class="arrow">→</span>
+        </div>
+      </a>
+      <a class="pillar" href="/explorer/" style="--pillar-color: var(--accent);">
+        <h3>Interactive Explorer</h3>
+        <p>Browse demos, see the source, try every widget. The reference manual that runs.</p>
+        <div class="pillar-meta">
+          <span>/explorer/  ·  WebAssembly</span>
+          <span class="arrow">→</span>
+        </div>
+      </a>
+      <a class="pillar" href="/playground/" style="--pillar-color: var(--accent2);">
+        <h3>Python Playground</h3>
+        <p>Live Python sandbox with ready-to-run demos. Edit the code, see results instantly.</p>
+        <div class="pillar-meta">
+          <span>/playground/  ·  Pyodide</span>
+          <span class="arrow">→</span>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- Powered by Dear ImGui -->
+  <section class="builton">
+    <div class="builton-credit">
+      <div class="eyebrow builton-eyebrow">// foundation</div>
+      <h2>Powered by <span class="accent3">Dear ImGui</span>.</h2>
+      <p>
+        Dear ImGui Bundle stands on the shoulders of
+        <a class="builton-link" href="https://github.com/ocornut/imgui" target="_blank" rel="noopener">Dear ImGui</a>,
+        the battle-tested, widely adopted immediate-mode GUI library created by
+        <a class="builton-link" href="https://github.com/ocornut" target="_blank" rel="noopener">Omar Cornut</a>,
+        plus 20+ of its most popular addons including
+        <a class="builton-link" href="https://github.com/epezent/implot" target="_blank" rel="noopener">ImPlot</a>,
+        <a class="builton-link" href="https://github.com/brenocq/implot3d" target="_blank" rel="noopener">ImPlot3D</a>,
+        <a class="builton-link" href="https://github.com/pthom/immvision" target="_blank" rel="noopener">ImmVision</a>, and
+        <a class="builton-link" href="https://github.com/thedmd/imgui-node-editor" target="_blank" rel="noopener">imgui-node-editor</a>.
+      </p>
+      <a class="builton-cta" href="https://github.com/ocornut/imgui" target="_blank" rel="noopener">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8Z" /></svg>
+        ocornut/imgui
+      </a>
+    </div>
+  </section>
+
+  <!-- Ecosystem -->
+  <section class="ecosystem">
+    <div class="eyebrow">// Ecosystem</div>
+    <div class="eco-header">
+      <h2>The ecosystem.</h2>
+    </div>
+
+    <div class="eco-stack" aria-label="How the libraries relate">
+      <a href="#eco-hello-imgui" class="eco-stack-node" style="--node-color: #58a6ff;">
+        <span class="eco-stack-name">Hello ImGui</span>
+        <span class="eco-stack-role">cross-platform runtime</span>
+        <span class="eco-stack-role">(based on Dear ImGui)</span>
+      </a>
+      <span class="eco-stack-arrow" aria-hidden="true">→</span>
+      <span class="eco-stack-node eco-stack-here" style="--node-color: var(--accent);">
+        <span class="eco-stack-name">Dear ImGui Bundle</span>
+        <span class="eco-stack-role">23 libs: C++ & Python </span>
+        <span class="eco-stack-role">Python bindings automatically updated via litgen</span>
+        <span class="eco-stack-youarehere">you are here</span>
+      </span>
+      <span class="eco-stack-arrow" aria-hidden="true">→</span>
+      <a href="#eco-fiatlight" class="eco-stack-node" style="--node-color: #c084fc;">
+        <span class="eco-stack-name">fiatlight</span>
+        <span class="eco-stack-role">low-code prototyping</span>
+        <span class="eco-stack-role">&nbsp;</span>
+      </a>
+      <a href="#eco-litgen" class="eco-stack-litgen" style="--node-color: #3fb950;" aria-label="litgen — generates the Python bindings (powers Dear ImGui Bundle)">
+        <span class="eco-stack-litgen-line" aria-hidden="true"></span>
+        <span class="eco-stack-name">litgen</span>
+        <span class="eco-stack-role">generates the bindings</span>
+      </a>
+    </div>
+
+    <div class="grid-3">
+      <div class="eco-card" id="eco-hello-imgui" data-href="https://pthom.github.io/hello_imgui/" tabindex="0" role="link" style="--eco-color: #58a6ff;">
+        <div class="eco-top">
+          <div class="eco-logobox"><img src="assets/logo_hello_imgui.png" alt="" /></div>
+          <div class="eco-roles">
+            <span class="eco-role">Cross-platform runtime</span>
+            <span class="eco-role-rel">built on Dear ImGui</span>
+          </div>
+        </div>
+        <div>
+          <h3>Hello ImGui</h3>
+          <p class="tag">Dear ImGui apps made simple — desktop, mobile, web from one codebase.</p>
+          <p class="sub">Minimal code. Maximally readable.</p>
+        </div>
+        <div class="eco-foot">
+          <span>$ open documentation →</span>
+          <a class="eco-repo" href="https://github.com/pthom/hello_imgui" target="_blank" rel="noopener" title="Hello ImGui on GitHub">
+            <svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8Z" /></svg>
+            <span>repo</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="eco-card" id="eco-fiatlight" data-href="https://pthom.github.io/fiatlight/" tabindex="0" role="link" style="--eco-color: #fbd141;">
+        <div class="eco-top">
+          <div class="eco-logobox"><img src="assets/logo_fiatlight.jpg" alt="" /></div>
+          <div class="eco-roles">
+            <span class="eco-role">Low-code prototyping</span>
+            <span class="eco-role-rel">built on Dear ImGui Bundle</span>
+          </div>
+        </div>
+        <div>
+          <h3>fiatlight</h3>
+          <p class="tag">Turn Python functions into interactive apps in one line.</p>
+          <p class="sub">Visual pipelines. Persistent state. Zero UI code.</p>
+        </div>
+        <div class="eco-foot">
+          <span>$ open documentation →</span>
+          <a class="eco-repo" href="https://github.com/pthom/fiatlight" target="_blank" rel="noopener" title="fiatlight on GitHub">
+            <svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8Z" /></svg>
+            <span>repo</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="eco-card" id="eco-litgen" data-href="https://pthom.github.io/litgen/" tabindex="0" role="link" style="--eco-color: #3fb950;">
+        <div class="eco-top">
+          <div class="eco-logobox"><img src="assets/logo_litgen.png" alt="" /></div>
+          <div class="eco-roles">
+            <span class="eco-role">Automatic Python bindings</span>
+            <span class="eco-role-rel">powers Dear ImGui Bundle</span>
+          </div>
+        </div>
+        <div>
+          <h3>litgen</h3>
+          <p class="tag">Automatic Python bindings for C++ — readable and discoverable.</p>
+          <p class="sub">Battle-tested on 20+ libraries.</p>
+        </div>
+        <div class="eco-foot">
+          <span>$ open documentation →</span>
+          <a class="eco-repo" href="https://github.com/pthom/litgen" target="_blank" rel="noopener" title="litgen on GitHub">
+            <svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8Z" /></svg>
+            <span>repo</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="philo-callout">
+      <div class="philo-callout-text">
+        <div class="philo-callout-label">// even less code with fiatlight</div>
+        <p class="philo-callout-body">
+          Annotate a Python function and
+          <a href="https://pthom.github.io/fiatlight/" target="_blank" rel="noopener">fiatlight</a>
+          builds the UI for you — sliders, file pickers, dropdowns, live pipelines. Zero UI code.
+        </p>
+        <a class="philo-callout-link" href="https://pthom.github.io/fiatlight/" target="_blank" rel="noopener">fiatlight →</a>
+      </div>
+      <button type="button" class="philo-callout-figure" data-zoom-src="assets/fiatlight_pipeline.jpg" aria-label="Enlarge fiatlight pipeline screenshot">
+        <img src="assets/fiatlight_pipeline.jpg"
+             alt="fiatlight: 4 lines of Python build a 3-node computer-vision pipeline (read image → Canny → dilate)"/>
+        <span class="philo-callout-zoom">click to enlarge</span>
+      </button>
+    </div>
+
+  </section>
+
 
   <!-- Footer -->
   <footer class="footer">
