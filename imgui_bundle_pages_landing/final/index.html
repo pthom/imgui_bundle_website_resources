@@ -1041,7 +1041,7 @@ items = [<span class="s">"Apple"</span>, <span class="s">"Banana"</span>, <span 
     _, selected_idx = imgui.list_box(<span class="s">"##fruits"</span>, selected_idx, items)
     imgui.text(<span class="s">f"You selected: {items[selected_idx]}"</span>)
 
-hello_imgui.run(gui, window_title=<span class="s">"Fruit Picker"</span>)</pre>
+hello_imgui.run(gui, window_title=<span class="s">"Fruit Picker"</span>, window_size_auto=<span class="n">True</span>)</pre>
           <div class="fruit-picker">
             <div class="fruit-chrome">
               <span class="dot" style="background:#ff5f56"></span>
