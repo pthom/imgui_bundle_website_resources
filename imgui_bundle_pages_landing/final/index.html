@@ -197,33 +197,6 @@
   .explorer-chrome .title {
     margin-left: 14px; font-family: var(--mono); font-size: 11px; color: #bbb;
   }
-  .explorer-tabs {
-    background: #1e1e1e;
-    padding: 6px 8px 0;
-    display: flex; gap: 2px;
-    border-bottom: 1px solid #0a0a0a;
-    overflow-x: auto;
-  }
-  .explorer-tab {
-    font-family: var(--mono);
-    font-size: 11.5px;
-    padding: 6px 14px;
-    background: #252525;
-    color: #bbb;
-    border: 1px solid #1a1a1a;
-    border-bottom: none;
-    border-radius: 4px 4px 0 0;
-    cursor: pointer;
-    white-space: nowrap;
-    user-select: none;
-  }
-  .explorer-tab.active {
-    background: #3a4d6e;
-    color: #fff;
-    border-color: #5a6d8e;
-  }
-  .explorer-tab .x { margin-left: 6px; opacity: 0.6; }
-  .explorer-tab:not(.active) .x { display: none; }
   .explorer-video-wrap { position: relative; background: #0a0a0a; }
   .explorer-video {
     width: 100%; display: block;
@@ -254,16 +227,6 @@
     transition: filter .15s, transform .15s;
   }
   .explorer-cover:hover .explorer-cta { filter: brightness(1.08); transform: translateY(-1px); }
-  .explorer-statusbar {
-    background: #252525;
-    border-top: 1px solid #0a0a0a;
-    padding: 5px 12px;
-    font-family: var(--mono);
-    font-size: 10.5px;
-    color: #888;
-    display: flex; justify-content: space-between;
-    flex-wrap: wrap; gap: 8px;
-  }
 
   /* ---------- Pillars ---------- */
   .pillars {
@@ -395,9 +358,9 @@
   .philo-callout-link:hover { filter: brightness(1.15); }
   .philo-callout-figure {
     display: block;
-    margin: 0;
+    margin: 0 0 0 auto;
     padding: 0;
-    width: 100%;
+    width: 50%;
     background: var(--bg-inset);
     border: 1px solid var(--border-bright);
     border-radius: 6px;
@@ -672,7 +635,8 @@
     cursor: zoom-out;
   }
   .lightbox.open { display: flex; }
-  .lightbox img {
+  .lightbox img,
+  .lightbox video {
     max-width: 100%;
     max-height: 100%;
     object-fit: contain;
@@ -982,14 +946,6 @@
           <span class="dot g"></span>
           <span class="title">Dear ImGui Bundle Explorer</span>
         </div>
-        <div class="explorer-tabs" id="explorerTabs">
-          <div class="explorer-tab" data-tab="0">Intro<span class="x">×</span></div>
-          <div class="explorer-tab active" data-tab="1">Dear ImGui<span class="x">×</span></div>
-          <div class="explorer-tab" data-tab="2">Demo Apps<span class="x">×</span></div>
-          <div class="explorer-tab" data-tab="3">Visualization<span class="x">×</span></div>
-          <div class="explorer-tab" data-tab="4">Widgets<span class="x">×</span></div>
-          <div class="explorer-tab" data-tab="5">Tools<span class="x">×</span></div>
-        </div>
         <div class="explorer-video-wrap">
           <video class="explorer-video"
                  src="assets/explorer.mp4"
@@ -997,10 +953,6 @@
           <a class="explorer-cover" href="/explorer/" aria-label="Open the Dear ImGui Bundle Explorer">
             <span class="explorer-cta">Open Explorer →</span>
           </a>
-          <div class="explorer-statusbar">
-            <span>Font scale: 1.000  |  Dear ImGui Bundle Explorer · v1.92.700</span>
-            <span>Enable idling  ☐  FPS: 120.0</span>
-          </div>
         </div>
       </div>
     </div>
@@ -1066,11 +1018,11 @@ hello_imgui.run(gui, window_title=<span class="s">"Fruit Picker"</span>, window_
 
   <!-- Pillars -->
   <section class="pillars">
-    <div class="eyebrow">START HERE</div>
+    <div class="eyebrow">// START HERE</div>
     <h2 class="h2">Three ways in.</h2>
     <div class="grid-3">
       <a class="pillar" href="/doc/" style="--pillar-color: var(--accent3);">
-        <div class="cmd"><span class="muted">$ </span>open --doc</div>
+<!--        <div class="cmd"><span class="muted">$ </span>open &#45;&#45;doc</div>-->
         <h3>Documentation</h3>
         <p>What it is, how to start, full API references for every library in the bundle.</p>
         <div class="pillar-meta">
@@ -1079,7 +1031,7 @@ hello_imgui.run(gui, window_title=<span class="s">"Fruit Picker"</span>, window_
         </div>
       </a>
       <a class="pillar" href="/explorer/" style="--pillar-color: var(--accent);">
-        <div class="cmd"><span class="muted">$ </span>open --explorer</div>
+<!--        <div class="cmd"><span class="muted">$ </span>open &#45;&#45;explorer</div>-->
         <h3>Interactive Explorer</h3>
         <p>Browse demos, see the source, try every widget. The reference manual that runs.</p>
         <div class="pillar-meta">
@@ -1088,7 +1040,7 @@ hello_imgui.run(gui, window_title=<span class="s">"Fruit Picker"</span>, window_
         </div>
       </a>
       <a class="pillar" href="/playground/" style="--pillar-color: var(--accent2);">
-        <div class="cmd"><span class="muted">$ </span>open --playground</div>
+<!--        <div class="cmd"><span class="muted">$ </span>open &#45;&#45;playground</div>-->
         <h3>Python Playground</h3>
         <p>Live Python sandbox with ready-to-run demos. Edit the code, see results instantly.</p>
         <div class="pillar-meta">
@@ -1105,22 +1057,24 @@ hello_imgui.run(gui, window_title=<span class="s">"Fruit Picker"</span>, window_
       <div>
         <div class="eyebrow webdeploy-eyebrow">// pyodide · webassembly</div>
         <h2>Deploy Python apps<br />to the web.</h2>
-        <p class="webdeploy-sub">No React. No CSS. No server. No fuss.</p>
+        <p class="webdeploy-sub">Same code. No HTML, no server.</p>
         <p>
-          The same source runs as a desktop binary or as a web app that loads entirely in the browser via Pyodide.
-          No rewrite, no server, no HTML to author. iOS and Android will happily run those web apps.
+          The same source runs as a desktop binary or as a web app that runs entirely in the browser via Pyodide.
+          iOS and Android can run it too.
         </p>
-        <p class="webdeploy-aside">
-          <strong>Same code. No HTML, no server.</strong>
-          A unique &amp; powerful combination.
+        <p>
+          Pyodide startup adds an 8 MB initial download; after that, the app runs at about 60 FPS on the GPU, fully client-side.
         </p>
+<!--        <p class="webdeploy-aside">-->
+<!--          <strong>Desktop performance. Browser distribution.</strong>-->
+<!--        </p>-->
         <div class="webdeploy-cta-row">
           <a href="/playground/" class="webdeploy-cta">Open the playground →</a>
           <span class="webdeploy-meta">/playground/  ·  runs in your browser</span>
         </div>
       </div>
 
-      <button type="button" class="webdeploy-window" data-zoom-src="assets/pyodide_example_pendulum.jpg" aria-label="Enlarge screenshot">
+      <button type="button" class="webdeploy-window" data-zoom-src="assets/pyodide_example_pendulum.mp4" aria-label="Enlarge screenshot">
         <div class="webdeploy-chrome">
           <span class="dot" style="background:#ff5f56"></span>
           <span class="dot" style="background:#ffbd2e"></span>
@@ -1129,10 +1083,14 @@ hello_imgui.run(gui, window_title=<span class="s">"Fruit Picker"</span>, window_
           <span class="webdeploy-zoom-hint">click to enlarge</span>
         </div>
         <div class="webdeploy-image-wrap">
-          <img src="assets/pyodide_example_pendulum.jpg"
-               alt="Double pendulum playground running entirely in the browser via Pyodide — Python source on the left, interactive UI in the middle, animation on the right"
-               class="webdeploy-image" />
+          <video src="assets/pyodide_example_pendulum.mp4"
+                 class="webdeploy-image"
+                 autoplay loop muted playsinline
+                 aria-label="Double pendulum playground running entirely in the browser via Pyodide — Python source on the left, interactive UI in the middle, animation on the right"></video>
         </div>
+        <span class="webdeploy-meta">
+          Python source (left) → live UI (right), running in the browser tab
+        </span>
       </button>
     </div>
   </section>
@@ -1164,6 +1122,7 @@ hello_imgui.run(gui, window_title=<span class="s">"Fruit Picker"</span>, window_
 
   <!-- Ecosystem -->
   <section class="ecosystem">
+    <div class="eyebrow">// Ecosystem</div>
     <div class="eco-header">
       <h2>The ecosystem.</h2>
       <span class="note">// four libraries · one philosophy</span>
@@ -1239,7 +1198,7 @@ hello_imgui.run(gui, window_title=<span class="s">"Fruit Picker"</span>, window_
       </div>
       <button type="button" class="philo-callout-figure" data-zoom-src="assets/fiatlight_pipeline.jpg" aria-label="Enlarge fiatlight pipeline screenshot">
         <img src="assets/fiatlight_pipeline.jpg"
-             alt="fiatlight: 4 lines of Python build a 3-node computer-vision pipeline (read image → Canny → dilate)" />
+             alt="fiatlight: 4 lines of Python build a 3-node computer-vision pipeline (read image → Canny → dilate)"/>
         <span class="philo-callout-zoom">click to enlarge</span>
       </button>
     </div>
@@ -1250,7 +1209,7 @@ hello_imgui.run(gui, window_title=<span class="s">"Fruit Picker"</span>, window_
   <section class="apps">
     <div class="apps-header">
       <div>
-        <div class="eyebrow"># capabilities</div>
+        <div class="eyebrow">// capabilities</div>
         <h2>A wide range of applications.</h2>
       </div>
     </div>
@@ -1333,10 +1292,6 @@ hello_imgui.run(gui, window_title=<span class="s">"Fruit Picker"</span>, window_
           <img src="assets/logo_imgui_bundle.png" alt="" />
           <span>Dear ImGui Bundle</span>
         </div>
-        <p>
-          Empower humans. Let them express their creativity.
-          Brain time is the scarce resource.
-        </p>
       </div>
       <div>
         <div class="footer-col-title">Bundle</div>
@@ -1375,19 +1330,10 @@ hello_imgui.run(gui, window_title=<span class="s">"Fruit Picker"</span>, window_
 <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Enlarged screenshot">
   <button type="button" class="lightbox-close" id="lightboxClose" aria-label="Close">close ✕</button>
   <img id="lightboxImg" src="" alt="" />
+  <video id="lightboxVideo" src="" autoplay loop muted playsinline style="display:none;"></video>
 </div>
 
 <script>
-  // Explorer tabs: clickable tab switching
-  (function () {
-    const tabs = document.querySelectorAll('#explorerTabs .explorer-tab');
-    tabs.forEach((tab) => {
-      tab.addEventListener('click', () => {
-        tabs.forEach((t) => t.classList.remove('active'));
-        tab.classList.add('active');
-      });
-    });
-  })();
 
   // Ecosystem cards: clicking the card opens its docs site, but clicks on the
   // inner "repo" anchor are left alone so it acts as a normal link.
@@ -1418,11 +1364,22 @@ hello_imgui.run(gui, window_title=<span class="s">"Fruit Picker"</span>, window_
   (function () {
     const overlay = document.getElementById('lightbox');
     const overlayImg = document.getElementById('lightboxImg');
+    const overlayVideo = document.getElementById('lightboxVideo');
     const closeBtn = document.getElementById('lightboxClose');
     if (!overlay || !overlayImg) return;
+    const isVideo = (src) => /\.(mp4|webm|ogg)$/i.test(src);
     const open = (src, alt) => {
-      overlayImg.src = src;
-      overlayImg.alt = alt || '';
+      if (isVideo(src)) {
+        overlayVideo.src = src;
+        overlayVideo.style.display = '';
+        overlayImg.style.display = 'none';
+        overlayVideo.play().catch(() => {});
+      } else {
+        overlayImg.src = src;
+        overlayImg.alt = alt || '';
+        overlayImg.style.display = '';
+        if (overlayVideo) overlayVideo.style.display = 'none';
+      }
       overlay.classList.add('open');
       document.body.style.overflow = 'hidden';
     };
@@ -1430,13 +1387,17 @@ hello_imgui.run(gui, window_title=<span class="s">"Fruit Picker"</span>, window_
       overlay.classList.remove('open');
       document.body.style.overflow = '';
       overlayImg.src = '';
+      if (overlayVideo) {
+        overlayVideo.pause();
+        overlayVideo.src = '';
+      }
     };
     document.querySelectorAll('[data-zoom-src]').forEach((el) => {
       el.addEventListener('click', (e) => {
         e.preventDefault();
         const src = el.getAttribute('data-zoom-src');
-        const inner = el.querySelector('img');
-        open(src, inner ? inner.alt : '');
+        const inner = el.querySelector('img, video');
+        open(src, inner ? (inner.alt || inner.getAttribute('aria-label') || '') : '');
       });
     });
     overlay.addEventListener('click', (e) => {
