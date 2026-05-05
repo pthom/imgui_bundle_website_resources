@@ -33,6 +33,14 @@
   html, body { margin: 0; padding: 0; background: var(--bg); }
   body { font-family: var(--sans); color: var(--ink); }
   a { color: inherit; }
+  p code {
+    font-family: var(--mono);
+    font-size: 0.92em;
+    color: var(--ink);
+    background: var(--bg-elev);
+    padding: 1px 6px;
+    border-radius: 4px;
+  }
 
   .page {
     max-width: 1280px;
@@ -1086,7 +1094,7 @@
       <div>
         <div class="term-line">
           <span class="prompt">&gt;</span>
-          <span>Dear ImGui Bundle: immediate-mode GUIs for python &amp; c++</span>
+          <span>Dear ImGui Bundle: immediate-mode GUIs for Python &amp; C++</span>
           <span class="blink"></span>
         </div>
         <h1>
@@ -1095,7 +1103,8 @@
           <span>Start building.</span>
         </h1>
         <p class="lede">
-          Interactive Python &amp; C++ apps for desktop, mobile, and web.
+          Interactive Python &amp; C++ apps for desktop, mobile, and the web.<br/>
+          <em>The same code runs at 60 FPS in the browser: no server, no rewrite.</em>
         </p>
 
         <div class="install-row">
@@ -1142,8 +1151,13 @@
         <div class="eyebrow philo-eyebrow">// philosophy</div>
         <h2>Code that<br />reads like a book.</h2>
         <p>
-          Immediate mode means your UI code is the UI. No widget trees,
-          no callbacks, no implicit state.
+          Immediate mode means your UI code is the UI. No widget tree, no callbacks.
+          Your <code>gui()</code> function is called every frame: what it draws
+          is what you see, and user input is handled right there.
+        </p>
+        <p>
+          Each frame, the whole UI is redrawn: this is fast, because rendering goes straight to the GPU.
+          The same code runs at 60 FPS, on desktop and in a browser canvas.
         </p>
         <p>
           In the age of generated code, brain time is the scarce resource.
@@ -1167,7 +1181,7 @@ items = [<span class="s">"Apple"</span>, <span class="s">"Banana"</span>, <span 
 <span class="k">def</span> gui():
     <span class="k">global</span> selected_idx
     imgui.text(<span class="s">"Choose a fruit:"</span>)
-    _, selected_idx = imgui.list_box(<span class="s">"##fruits"</span>, selected_idx, items)
+    _clicked, selected_idx = imgui.list_box(<span class="s">"##fruits"</span>, selected_idx, items)
     imgui.text(<span class="s">f"You selected: {items[selected_idx]}"</span>)
 
 hello_imgui.run(gui, window_title=<span class="s">"Fruit Picker"</span>, window_size_auto=<span class="n">True</span>)</pre>
@@ -1190,31 +1204,6 @@ hello_imgui.run(gui, window_title=<span class="s">"Fruit Picker"</span>, window_
           </div>
         </div>
       </div>
-    </div>
-  </section>
-
-  <!-- How it compares -->
-  <section class="compare">
-    <div class="compare-inner">
-      <div class="eyebrow compare-eyebrow">// not to be confused with</div>
-      <h2>How does it compare?</h2>
-      <h3>Wait, isn't there Dear PyGui?</h3>
-      <p>
-        Different project, different paradigm.
-        Dear PyGui provides retained-mode wrappers around ImGui: you build a widget tree once and wire callbacks.
-      </p>
-      <p>
-        Dear ImGui Bundle brings true <a class="builton-link" href="https://imgui-bundle.pages.dev/doc/intro/imm-gui"><strong>immediate mode</strong></a> to Python.
-        It also tracks the latest Dear ImGui release closely (thanks to auto-generated bindings), and runs in the browser via Pyodide.
-      </p>
-      <h3>Coming from a web-first stack (NiceGUI, Streamlit, Gradio)?</h3>
-      <p>
-        Those shine for dashboards and ML demos. Pick Dear ImGui Bundle when you need native
-        performance, offline desktop binary, or Web apps at 60 FPS without dealing with HTML and a distant server.
-      </p>
-      <a class="compare-cta" href="https://imgui-bundle.pages.dev/doc/intro/compare">
-        Full side-by-side comparison →
-      </a>
     </div>
   </section>
 
@@ -1250,7 +1239,7 @@ hello_imgui.run(gui, window_title=<span class="s">"Fruit Picker"</span>, window_
         </button>
         <div>
           <h3>GPU-accelerated rendering</h3>
-          <p>Render directly on the GPU. Blend custom shaders and 3D content into your UI at 120 FPS.</p>
+          <p>Render directly on the GPU. Blend custom shaders and 3D content into your UI at 60 FPS.</p>
         </div>
         <div class="app-tag">// shaders</div>
       </div>
@@ -1286,6 +1275,31 @@ hello_imgui.run(gui, window_title=<span class="s">"Fruit Picker"</span>, window_
     </div>
   </section>
 
+  <!-- How it compares -->
+  <section class="compare">
+    <div class="compare-inner">
+      <div class="eyebrow compare-eyebrow">// not to be confused with</div>
+      <h2>How does it compare?</h2>
+      <h3>Wait, isn't there Dear PyGui?</h3>
+      <p>
+        Different project, different paradigm.
+        Dear PyGui provides retained-mode wrappers around ImGui: you build a widget tree once and wire callbacks.
+      </p>
+      <p>
+        Dear ImGui Bundle brings true <a class="builton-link" href="https://imgui-bundle.pages.dev/doc/intro/imm-gui"><strong>immediate mode</strong></a> to Python.
+        It also tracks the latest Dear ImGui release closely (thanks to auto-generated bindings), and runs in the browser via Pyodide.
+      </p>
+      <h3>Coming from a web-first stack (NiceGUI, Streamlit, Gradio)?</h3>
+      <p>
+        Those shine for dashboards and ML demos. Pick Dear ImGui Bundle when you need native
+        performance, offline desktop binary, or web apps at 60 FPS without dealing with HTML and a remote server.
+      </p>
+      <a class="compare-cta" href="https://imgui-bundle.pages.dev/doc/intro/compare">
+        Full side-by-side comparison →
+      </a>
+    </div>
+  </section>
+
   <!-- Deploy to web -->
   <section class="webdeploy">
     <div class="webdeploy-grid">
@@ -1294,11 +1308,15 @@ hello_imgui.run(gui, window_title=<span class="s">"Fruit Picker"</span>, window_
         <h2>Deploy Python apps<br />to the web.</h2>
         <p class="webdeploy-sub">Same code. No HTML, no server.</p>
         <p>
-          The same source runs as a desktop binary or as a web app that runs entirely in the browser via Pyodide.
-          iOS and Android can run it too.
+          Thanks to <a href="https://pyodide.org/">Pyodide</a> (which compiles Python
+          to WebAssembly), the same code runs in the browser. Your <code>gui()</code> function
+          can be drawn on a native app window as well as on a <code>&lt;canvas&gt;</code>.
         </p>
         <p>
-          Pyodide startup adds an 8 MB initial download; after that, the app runs at about 60 FPS on the GPU, fully client-side.
+          Pyodide startup adds an 8 MB initial download; after that, the app runs at 60 FPS on the GPU, fully client-side.
+        </p>
+        <p>
+          <em>Notes: iOS and Android can also display these apps. C++ uses Emscripten, with the same approach.</em>
         </p>
         <div class="webdeploy-cta-row">
           <a href="/playground/" class="webdeploy-cta">Open the playground →</a>
@@ -1398,7 +1416,7 @@ hello_imgui.run(gui, window_title=<span class="s">"Fruit Picker"</span>, window_
       <span class="eco-stack-arrow" aria-hidden="true">→</span>
       <span class="eco-stack-node eco-stack-here" style="--node-color: var(--accent);">
         <span class="eco-stack-name">Dear ImGui Bundle</span>
-        <span class="eco-stack-role">23 libs: C++ & Python </span>
+        <span class="eco-stack-role">23 libs: C++ & Python</span>
         <span class="eco-stack-role">Python bindings automatically updated via litgen</span>
         <span class="eco-stack-youarehere">you are here</span>
       </span>
