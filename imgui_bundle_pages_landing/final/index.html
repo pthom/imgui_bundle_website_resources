@@ -252,6 +252,7 @@
   .pillars {
     padding: 72px 32px;
     border-bottom: 1px solid var(--border);
+    background: var(--bg-inset);
   }
   .eyebrow {
     font-family: var(--mono); font-size: 12px;
@@ -520,6 +521,80 @@
     transition: border-color .15s, background .15s;
   }
   .builton-cta:hover { border-color: var(--accent3); background: var(--bg); }
+
+  /* ---------- Used by ---------- */
+  .usedby {
+    padding: 56px 32px;
+    border-bottom: 1px solid var(--border);
+    background: var(--bg);
+  }
+  .usedby-eyebrow { color: var(--ink-muted); }
+  .usedby h2 {
+    font-size: 32px; font-weight: 700;
+    color: var(--ink);
+    margin: 0 0 14px;
+    letter-spacing: -0.02em;
+    line-height: 1.05;
+  }
+  .usedby-sub {
+    font-size: 16px; line-height: 1.6;
+    color: var(--ink-dim);
+    margin: 0 0 32px;
+    max-width: 720px;
+  }
+  .usedby-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+  .usedby-card {
+    background: var(--bg-elev);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px 22px;
+    text-decoration: none; color: inherit;
+    display: flex; flex-direction: column; gap: 10px;
+    min-width: 0;
+    transition: border-color .15s, transform .15s;
+  }
+  .usedby-card:hover { border-color: var(--border-bright); transform: translateY(-1px); }
+  .usedby-card-head {
+    display: flex; align-items: baseline; gap: 8px;
+    justify-content: space-between;
+  }
+  .usedby-card-name {
+    font-size: 18px; font-weight: 600;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+  }
+  .usedby-card-stars {
+    font-family: var(--mono); font-size: 11px;
+    color: var(--ink-muted);
+    white-space: nowrap;
+  }
+  .usedby-card-badge {
+    font-family: var(--mono); font-size: 11px;
+    color: var(--accent3);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    line-height: 1.5;
+  }
+  .usedby-card-desc {
+    font-size: 14px; line-height: 1.5;
+    color: var(--ink-dim);
+    margin: 0;
+  }
+  .usedby-foot {
+    margin-top: 24px;
+    font-family: var(--mono); font-size: 12px;
+    color: var(--ink-muted);
+  }
+  .usedby-foot a {
+    color: var(--ink-dim);
+    text-decoration: none;
+    border-bottom: 1px dashed var(--border-bright);
+  }
+  .usedby-foot a:hover { color: var(--accent3); border-bottom-color: var(--accent3); }
 
   /* ---------- Compare ---------- */
   .compare {
@@ -1034,6 +1109,9 @@
     .compare { padding: 48px 20px; }
     .compare h2 { font-size: 28px; }
     .webdeploy { padding: 48px 20px; }
+    .usedby { padding: 48px 20px; }
+    .usedby h2 { font-size: 28px; }
+    .usedby-grid { grid-template-columns: repeat(2, 1fr); }
     .footer { padding: 40px 20px 24px; }
 
     .h2, .eco-header h2, .apps-header h2 { font-size: 28px; margin-bottom: 32px; }
@@ -1062,6 +1140,7 @@
     .footer-bottom { flex-direction: column; }
     .compat { gap: 10px 16px; }
     .apps-grid { grid-template-columns: 1fr; }
+    .usedby-grid { grid-template-columns: 1fr; }
   }
 </style>
 </head>
@@ -1272,12 +1351,35 @@ hello_imgui.run(gui, window_title=<span class="s">"Fruit Picker"</span>, window_
     </div>
   </section>
 
+  <!-- Powered by Dear ImGui -->
+  <section class="builton">
+    <div class="builton-credit">
+      <div class="eyebrow builton-eyebrow">// foundation</div>
+      <h2>Powered by <span class="accent3">Dear ImGui</span>.</h2>
+      <p>
+        Dear ImGui Bundle stands on the shoulders of
+        <a class="builton-link" href="https://github.com/ocornut/imgui" target="_blank" rel="noopener">Dear ImGui</a>,
+        the battle-tested, widely adopted immediate-mode GUI library created by
+        <a class="builton-link" href="https://github.com/ocornut" target="_blank" rel="noopener">Omar Cornut</a>,
+        plus 20+ of its most popular addons including
+        <a class="builton-link" href="https://github.com/epezent/implot" target="_blank" rel="noopener">ImPlot</a>,
+        <a class="builton-link" href="https://github.com/brenocq/implot3d" target="_blank" rel="noopener">ImPlot3D</a>,
+        <a class="builton-link" href="https://github.com/pthom/immvision" target="_blank" rel="noopener">ImmVision</a>, and
+        <a class="builton-link" href="https://github.com/thedmd/imgui-node-editor" target="_blank" rel="noopener">imgui-node-editor</a>.
+      </p>
+      <a class="builton-cta" href="https://github.com/ocornut/imgui" target="_blank" rel="noopener">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8Z" /></svg>
+        ocornut/imgui
+      </a>
+    </div>
+  </section>
+
   <!-- How it compares -->
   <section class="compare">
     <div class="compare-inner">
-      <div class="eyebrow compare-eyebrow">// not to be confused with</div>
+      <div class="eyebrow compare-eyebrow">// alternatives</div>
       <h2>How does it compare?</h2>
-      <h3>Wait, isn't there Dear PyGui?</h3>
+      <h3>Isn't this just Dear PyGui?</h3>
       <p>
         Different project, different paradigm.
         Dear PyGui provides retained-mode wrappers around ImGui: you build a widget tree once and wire callbacks.
@@ -1286,7 +1388,7 @@ hello_imgui.run(gui, window_title=<span class="s">"Fruit Picker"</span>, window_
         Dear ImGui Bundle brings true <a class="builton-link" href="https://imgui-bundle.pages.dev/doc/intro/imm-gui"><strong>immediate mode</strong></a> to Python.
         It also tracks the latest Dear ImGui release closely (thanks to auto-generated bindings), and runs in the browser via Pyodide.
       </p>
-      <h3>Coming from a web-first stack (NiceGUI, Streamlit, Gradio)?</h3>
+      <h3>What about NiceGUI, Streamlit, or Gradio?</h3>
       <p>
         Those shine for dashboards and ML demos. Pick Dear ImGui Bundle when you need native
         performance, offline desktop binary, or web apps at 60 FPS without dealing with HTML and a remote server.
@@ -1342,6 +1444,55 @@ hello_imgui.run(gui, window_title=<span class="s">"Fruit Picker"</span>, window_
     </div>
   </section>
 
+  <!-- Used by -->
+  <section class="usedby">
+    <div class="eyebrow usedby-eyebrow">// in the wild</div>
+    <h2>Real-time research, real codebases.</h2>
+    <p class="usedby-sub">
+      Physics simulation, Gaussian splatting, neural rendering, volumetric video, etc.
+      The projects below use Dear ImGui Bundle as an interactive viewer for real time rendering together
+      with interactive parameters tweaking.
+    </p>
+    <div class="usedby-grid">
+      <a class="usedby-card" href="https://github.com/newton-physics/newton" target="_blank" rel="noopener">
+        <div class="usedby-card-head">
+          <span class="usedby-card-name">Newton</span>
+          <span class="usedby-card-stars">&#9733; 4.8k</span>
+        </div>
+        <div class="usedby-card-badge">Linux Foundation &middot; NVIDIA &middot; DeepMind &middot; Disney</div>
+        <p class="usedby-card-desc">GPU-accelerated physics simulation for robotics.</p>
+      </a>
+      <a class="usedby-card" href="https://github.com/zju3dv/EasyVolcap" target="_blank" rel="noopener">
+        <div class="usedby-card-head">
+          <span class="usedby-card-name">EasyVolcap &middot; 4K4D</span>
+          <span class="usedby-card-stars">&#9733; 1.5k &middot; 1.8k</span>
+        </div>
+        <div class="usedby-card-badge">SIGGRAPH Asia 2023 &middot; CVPR 2024</div>
+        <p class="usedby-card-desc">Neural volumetric video and real-time 4D view synthesis at 4K (ZJU3DV).</p>
+      </a>
+      <a class="usedby-card" href="https://github.com/theialab/powerfoam" target="_blank" rel="noopener">
+        <div class="usedby-card-head">
+          <span class="usedby-card-name">Power Foam</span>
+          <span class="usedby-card-stars">&#9733; 0.1k</span>
+        </div>
+        <div class="usedby-card-badge">arXiv 2026 &middot; TheiaLab</div>
+        <p class="usedby-card-desc">Real-time differentiable ray tracing and rasterization.</p>
+      </a>
+      <a class="usedby-card" href="https://github.com/Florian-Barthel/splatviz" target="_blank" rel="noopener">
+        <div class="usedby-card-head">
+          <span class="usedby-card-name">splatviz</span>
+          <span class="usedby-card-stars">&#9733; 1.5k</span>
+        </div>
+        <div class="usedby-card-badge">Gaussian Splatting</div>
+        <p class="usedby-card-desc">Interactive 3D Gaussian Splatting viewer.</p>
+      </a>
+    </div>
+    <p class="usedby-foot">
+      ... and 100+ more on
+      <a href="https://github.com/pthom/imgui_bundle/network/dependents" target="_blank" rel="noopener">GitHub dependents</a>.
+    </p>
+  </section>
+
   <!-- Pillars -->
   <section class="pillars">
     <div class="eyebrow">// where next</div>
@@ -1370,29 +1521,6 @@ hello_imgui.run(gui, window_title=<span class="s">"Fruit Picker"</span>, window_
           <span>/playground/  ·  Pyodide</span>
           <span class="arrow">→</span>
         </div>
-      </a>
-    </div>
-  </section>
-
-  <!-- Powered by Dear ImGui -->
-  <section class="builton">
-    <div class="builton-credit">
-      <div class="eyebrow builton-eyebrow">// foundation</div>
-      <h2>Powered by <span class="accent3">Dear ImGui</span>.</h2>
-      <p>
-        Dear ImGui Bundle stands on the shoulders of
-        <a class="builton-link" href="https://github.com/ocornut/imgui" target="_blank" rel="noopener">Dear ImGui</a>,
-        the battle-tested, widely adopted immediate-mode GUI library created by
-        <a class="builton-link" href="https://github.com/ocornut" target="_blank" rel="noopener">Omar Cornut</a>,
-        plus 20+ of its most popular addons including
-        <a class="builton-link" href="https://github.com/epezent/implot" target="_blank" rel="noopener">ImPlot</a>,
-        <a class="builton-link" href="https://github.com/brenocq/implot3d" target="_blank" rel="noopener">ImPlot3D</a>,
-        <a class="builton-link" href="https://github.com/pthom/immvision" target="_blank" rel="noopener">ImmVision</a>, and
-        <a class="builton-link" href="https://github.com/thedmd/imgui-node-editor" target="_blank" rel="noopener">imgui-node-editor</a>.
-      </p>
-      <a class="builton-cta" href="https://github.com/ocornut/imgui" target="_blank" rel="noopener">
-        <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8Z" /></svg>
-        ocornut/imgui
       </a>
     </div>
   </section>
