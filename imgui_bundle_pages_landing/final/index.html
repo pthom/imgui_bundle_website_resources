@@ -512,7 +512,7 @@
   .builton {
     padding: 56px 32px;
     border-bottom: 1px solid var(--border);
-    background: var(--bg);
+    background: var(--bg-inset);
   }
   .builton-credit {
     max-width: 760px;
@@ -629,7 +629,7 @@
   .compare {
     padding: 56px 32px;
     border-bottom: 1px solid var(--border);
-    background: var(--bg-inset);
+    background: var(--bg);
   }
   .compare-inner { max-width: 820px; }
   .compare h2 {
@@ -1420,64 +1420,6 @@ hello_imgui.run(gui, window_title=<span class="s">"Fruit Picker"</span>, window_
     </div>
   </section>
 
-  <!-- Powered by Dear ImGui -->
-  <section class="builton">
-    <div class="builton-credit">
-      <div class="eyebrow builton-eyebrow">// foundation</div>
-      <h2>Powered by <span class="accent3">Dear ImGui</span>.</h2>
-      <p>
-        Dear ImGui Bundle stands on the shoulders of
-        <a class="builton-link" href="https://github.com/ocornut/imgui" target="_blank" rel="noopener">Dear ImGui</a>,
-        the battle-tested, widely adopted immediate-mode GUI library created by
-        <a class="builton-link" href="https://github.com/ocornut" target="_blank" rel="noopener">Omar Cornut</a>,
-        plus 20+ of its most popular addons including
-        <a class="builton-link" href="https://github.com/epezent/implot" target="_blank" rel="noopener">ImPlot</a>,
-        <a class="builton-link" href="https://github.com/brenocq/implot3d" target="_blank" rel="noopener">ImPlot3D</a>,
-        <a class="builton-link" href="https://github.com/pthom/immvision" target="_blank" rel="noopener">ImmVision</a>, and
-        <a class="builton-link" href="https://github.com/thedmd/imgui-node-editor" target="_blank" rel="noopener">imgui-node-editor</a>.
-      </p>
-      <a class="builton-cta" href="https://github.com/ocornut/imgui" target="_blank" rel="noopener">
-        <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8Z" /></svg>
-        ocornut/imgui
-      </a>
-    </div>
-  </section>
-
-  <!-- How it compares -->
-  <section class="compare">
-    <div class="compare-inner">
-      <div class="eyebrow compare-eyebrow">// alternatives</div>
-      <h2>How does it compare?</h2>
-      <h3>Isn't this just Dear PyGui?</h3>
-      <p>
-        Different project, different paradigm.
-        Dear PyGui provides retained-mode wrappers around ImGui: you build a widget tree once and wire callbacks.
-      </p>
-      <p>
-        Dear ImGui Bundle brings true <a class="builton-link" href="https://imgui-bundle.pages.dev/doc/intro/imm-gui"><strong>immediate mode</strong></a> to Python.
-        It also tracks the latest Dear ImGui release closely (thanks to auto-generated bindings), and runs in the browser via Pyodide.
-      </p>
-      <h3>What about NiceGUI, Streamlit, or Gradio?</h3>
-      <p>
-        Those shine for dashboards and ML demos. Pick Dear ImGui Bundle when you need native
-        performance, offline desktop binary, or smooth web apps without dealing with HTML or a remote server.
-      </p>
-      <div class="compare-fit-grid">
-        <div>
-          <h3>When it fits.</h3>
-          <p>Real-time tools, viewers, scientific UIs, creative apps, prototyping. Anything GPU-heavy, or cross-platform from one codebase.</p>
-        </div>
-        <div>
-          <h3>When to skip it.</h3>
-          <p>Form-heavy or accessibility-critical apps (limited screen-reader support). Apps that plug into a web design system.</p>
-        </div>
-      </div>
-      <a class="compare-cta" href="https://imgui-bundle.pages.dev/doc/intro/compare">
-        Full side-by-side comparison →
-      </a>
-    </div>
-  </section>
-
   <!-- Deploy to web -->
   <section class="webdeploy">
     <div class="webdeploy-grid">
@@ -1570,6 +1512,64 @@ hello_imgui.run(gui, window_title=<span class="s">"Fruit Picker"</span>, window_
       ... and 100+ more on
       <a href="https://github.com/pthom/imgui_bundle/network/dependents" target="_blank" rel="noopener">GitHub dependents</a>.
     </p>
+  </section>
+
+  <!-- Powered by Dear ImGui -->
+  <section class="builton">
+    <div class="builton-credit">
+      <div class="eyebrow builton-eyebrow">// foundation</div>
+      <h2>Powered by <span class="accent3">Dear ImGui</span>.</h2>
+      <p>
+        Dear ImGui Bundle stands on the shoulders of
+        <a class="builton-link" href="https://github.com/ocornut/imgui" target="_blank" rel="noopener">Dear ImGui</a>,
+        the battle-tested, widely adopted immediate-mode GUI library created by
+        <a class="builton-link" href="https://github.com/ocornut" target="_blank" rel="noopener">Omar Cornut</a>,
+        plus 20+ of its most popular addons including
+        <a class="builton-link" href="https://github.com/epezent/implot" target="_blank" rel="noopener">ImPlot</a>,
+        <a class="builton-link" href="https://github.com/brenocq/implot3d" target="_blank" rel="noopener">ImPlot3D</a>,
+        <a class="builton-link" href="https://github.com/pthom/immvision" target="_blank" rel="noopener">ImmVision</a>, and
+        <a class="builton-link" href="https://github.com/thedmd/imgui-node-editor" target="_blank" rel="noopener">imgui-node-editor</a>.
+      </p>
+      <a class="builton-cta" href="https://github.com/ocornut/imgui" target="_blank" rel="noopener">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8Z" /></svg>
+        ocornut/imgui
+      </a>
+    </div>
+  </section>
+
+  <!-- How it compares -->
+  <section class="compare">
+    <div class="compare-inner">
+      <div class="eyebrow compare-eyebrow">// alternatives</div>
+      <h2>How does it compare?</h2>
+      <h3>Isn't this just Dear PyGui?</h3>
+      <p>
+        Different project, different paradigm.
+        Dear PyGui provides retained-mode wrappers around ImGui: you build a widget tree once and wire callbacks.
+      </p>
+      <p>
+        Dear ImGui Bundle brings true <a class="builton-link" href="https://imgui-bundle.pages.dev/doc/intro/imm-gui"><strong>immediate mode</strong></a> to Python.
+        It also tracks the latest Dear ImGui release closely (thanks to auto-generated bindings), and runs in the browser via Pyodide.
+      </p>
+      <h3>What about NiceGUI, Streamlit, or Gradio?</h3>
+      <p>
+        Those shine for dashboards and ML demos. Pick Dear ImGui Bundle when you need native
+        performance, offline desktop binary, or smooth web apps without dealing with HTML or a remote server.
+      </p>
+      <div class="compare-fit-grid">
+        <div>
+          <h3>When it fits.</h3>
+          <p>Real-time tools, viewers, scientific UIs, creative apps, prototyping. Anything GPU-heavy, or cross-platform from one codebase.</p>
+        </div>
+        <div>
+          <h3>When to skip it.</h3>
+          <p>Form-heavy or accessibility-critical apps (limited screen-reader support). Apps that plug into a web design system.</p>
+        </div>
+      </div>
+      <a class="compare-cta" href="https://imgui-bundle.pages.dev/doc/intro/compare">
+        Full side-by-side comparison →
+      </a>
+    </div>
   </section>
 
   <!-- Pillars -->
