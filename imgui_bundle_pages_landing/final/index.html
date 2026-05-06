@@ -1300,30 +1300,31 @@
               <button type="button" class="codewindow-tab" data-lang="py">fruit_picker.py</button>
               <button type="button" class="codewindow-tab" data-lang="cpp">fruit_picker.cpp</button>
             </div>
-            <span class="lines" data-lang="py">9 lines</span>
+            <span class="lines" data-lang="py">10 lines</span>
             <span class="lines" data-lang="cpp">12 lines</span>
           </div>
 <pre data-lang="py"><span class="k">from</span> imgui_bundle <span class="k">import</span> imgui, hello_imgui
 
-selected_idx = <span class="n">0</span>
-items = [<span class="s">"Apple"</span>, <span class="s">"Banana"</span>, <span class="s">"Cherry"</span>]
+<span class="k">class</span> App:
+    <span class="k">def</span> __init__(self):
+        self.selected_idx = <span class="n">0</span>
+        self.items = [<span class="s">"Apple"</span>, <span class="s">"Banana"</span>, <span class="s">"Cherry"</span>]
 
-<span class="k">def</span> gui():
-    <span class="k">global</span> selected_idx
-    imgui.text(<span class="s">"Choose a fruit:"</span>)
-    _clicked, selected_idx = imgui.list_box(<span class="s">"##fruits"</span>, selected_idx, items)
-    imgui.text(<span class="s">f"You selected: {items[selected_idx]}"</span>)
+    <span class="k">def</span> gui(self):
+        imgui.text(<span class="s">"Choose a fruit:"</span>)
+        _clicked, self.selected_idx = imgui.list_box(<span class="s">"##fruits"</span>, self.selected_idx, self.items)
+        imgui.text(<span class="s">f"You selected: {self.items[self.selected_idx]}"</span>)
 
-hello_imgui.run(gui, window_title=<span class="s">"Fruit Picker"</span>, window_size_auto=<span class="n">True</span>)</pre>
-<pre data-lang="cpp"><span class="k">#include</span> <span class="s">"imgui.h"</span>
-<span class="k">#include</span> <span class="s">"hello_imgui/hello_imgui.h"</span>
+hello_imgui.run(App().gui, window_title=<span class="s">"Fruit Picker"</span>, window_size_auto=<span class="n">True</span>)</pre>
+<pre data-lang="cpp"><span class="k">#include</span> <span class="s">"hello_imgui/hello_imgui.h"</span>
+<span class="k">#include</span> <span class="s">"imgui.h"</span>
 
 <span class="k">int</span> selected_idx = <span class="n">0</span>;
-<span class="k">const char</span>* items[] = { <span class="s">"Apple"</span>, <span class="s">"Banana"</span>, <span class="s">"Cherry"</span> };
+<span class="k">const char</span>* items[<span class="n">3</span>] = { <span class="s">"Apple"</span>, <span class="s">"Banana"</span>, <span class="s">"Cherry"</span> };
 
 <span class="k">void</span> gui() {
     ImGui::Text(<span class="s">"Choose a fruit:"</span>);
-    ImGui::ListBox(<span class="s">"##fruits"</span>, &amp;selected_idx, items, IM_ARRAYSIZE(items));
+    <span class="c">/*bool clicked=*/</span>ImGui::ListBox(<span class="s">"##fruits"</span>, &amp;selected_idx, items, IM_ARRAYSIZE(items));
     ImGui::Text(<span class="s">"You selected: %s"</span>, items[selected_idx]);
 }
 
