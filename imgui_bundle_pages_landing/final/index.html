@@ -1280,9 +1280,10 @@
         <div class="eyebrow philo-eyebrow">// philosophy</div>
         <h2>Code that<br />reads like a book.</h2>
         <p>
-          Immediate mode means your UI code is the UI. No widget tree, no callbacks.
-          Your <code>gui()</code> function is called every frame: what it draws
-          is what you see, and user input is handled right there.
+          Your UI is just a function that runs every frame: what it draws
+          is what you see, and user input is handled right there. No widget tree,
+          no callbacks, no implicit state (the graphics-programming term for this
+          is <a href="https://imgui-bundle.pages.dev/doc/intro/imm-gui/">immediate mode</a>).
         </p>
         <p>
           Each frame, the whole UI is redrawn: this is fast, because rendering goes straight to the GPU.
@@ -1486,7 +1487,7 @@ hello_imgui.run(gui, window_title=<span class="s">"Fruit Picker"</span>, window_
         <p class="webdeploy-sub">Same code. No HTML, no server.</p>
         <p>
           Thanks to <a href="https://pyodide.org/">Pyodide</a> (which compiles Python
-          to WebAssembly), the same code runs in the browser. Your <code>gui()</code> function
+          to WebAssembly), the same code runs in the browser. Your UI
           can be drawn on a native app window as well as on a <code>&lt;canvas&gt;</code>.
         </p>
         <p>
