@@ -33,7 +33,7 @@
   html, body { margin: 0; padding: 0; background: var(--bg); }
   body { font-family: var(--sans); color: var(--ink); }
   a { color: inherit; }
-  p code {
+  p code, li code {
     font-family: var(--mono);
     font-size: 0.92em;
     color: var(--ink);
@@ -618,6 +618,33 @@
     font-family: var(--mono); font-size: 12px;
     color: var(--ink-muted);
   }
+  .usedby-integrations-lead {
+    margin-top: 32px;
+    margin-bottom: 10px;
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--ink-muted);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .usedby-integrations {
+    margin-top: 0;
+    padding-left: 20px;
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--ink-dim);
+  }
+  .usedby-integrations li { margin: 0 0 10px; }
+  .usedby-integrations li:last-child { margin-bottom: 0; }
+  .usedby-integrations li::marker { color: var(--ink-muted); }
+  .usedby-integrations strong { color: var(--ink); font-weight: 600; }
+  .usedby-integrations a {
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: 1px solid var(--border-bright);
+    transition: color .15s, border-color .15s;
+  }
+  .usedby-integrations a:hover { color: var(--accent3); border-bottom-color: var(--accent3); }
   .usedby-foot a {
     color: var(--ink-dim);
     text-decoration: none;
@@ -1471,8 +1498,8 @@ hello_imgui.run(App().gui, window_title=<span class="s">"Fruit Picker"</span>, w
     <div class="eyebrow usedby-eyebrow">// in the wild</div>
     <h2>Real-time research, real codebases.</h2>
     <p class="usedby-sub">
-      Physics simulation, Gaussian splatting, neural rendering, volumetric video, etc.
-      The projects below use Dear ImGui Bundle as an interactive viewer for real time rendering together
+      Physics simulation, Gaussian splatting, neural rendering, volumetric video: 
+	  the projects below use Dear ImGui Bundle as an interactive viewerfor real time rendering together
       with interactive parameters tweaking.
     </p>
     <div class="usedby-grid">
@@ -1509,6 +1536,22 @@ hello_imgui.run(App().gui, window_title=<span class="s">"Fruit Picker"</span>, w
         <p class="usedby-card-desc">Interactive 3D Gaussian Splatting viewer.</p>
       </a>
     </div>
+    <p class="usedby-integrations-lead">// also embedded in graphics frameworks</p>
+    <ul class="usedby-integrations">
+      <li>
+        <a href="https://github.com/moderngl/moderngl-window" target="_blank" rel="noopener"><strong>moderngl-window</strong></a>:
+        window and UI helper for <a href="https://github.com/moderngl/moderngl" target="_blank" rel="noopener">moderngl</a>
+        (2.3k &#9733;), the de facto "modern OpenGL for Python" library.
+        imgui_bundle is one of its two ImGui integrations.
+      </li>
+      <li>
+        <a href="https://github.com/pygfx/wgpu-py" target="_blank" rel="noopener"><strong>wgpu-py</strong></a>:
+        the official Python binding for <strong>WebGPU</strong>, the next-generation GPU API
+        that succeeds OpenGL/Vulkan/Direct3D and runs natively or in the browser.
+        Ships an imgui_bundle helper in <code>wgpu.utils.imgui</code>; maintained by pygfx
+        (also the org behind the <a href="https://github.com/pygfx/pygfx" target="_blank" rel="noopener">pygfx</a> 3D engine).
+      </li>
+    </ul>
     <p class="usedby-foot">
       ... and 100+ more on
       <a href="https://github.com/pthom/imgui_bundle/network/dependents" target="_blank" rel="noopener">GitHub dependents</a>.
