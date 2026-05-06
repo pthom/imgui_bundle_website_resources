@@ -647,6 +647,25 @@
     margin: 0 0 16px;
   }
   .compare p strong { color: var(--ink); font-weight: 600; }
+  .compare-fit-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px 32px;
+    margin-top: 24px;
+    padding-top: 20px;
+    border-top: 1px dashed var(--border);
+  }
+  .compare-fit-grid h3 {
+    font-size: 15px;
+    margin: 0 0 6px;
+    color: var(--ink);
+  }
+  .compare-fit-grid p {
+    font-size: 13.5px;
+    line-height: 1.55;
+    margin: 0;
+    color: var(--ink-dim);
+  }
   .compare-aside {
     border-left: 2px solid var(--border-bright);
     padding-left: 14px;
@@ -1137,6 +1156,7 @@
     .builton { padding: 48px 20px; }
     .compare { padding: 48px 20px; }
     .compare h2 { font-size: 28px; }
+    .compare-fit-grid { grid-template-columns: 1fr; gap: 14px; }
     .webdeploy { padding: 48px 20px; }
     .usedby { padding: 48px 20px; }
     .usedby h2 { font-size: 28px; }
@@ -1441,6 +1461,16 @@ hello_imgui.run(gui, window_title=<span class="s">"Fruit Picker"</span>, window_
         Those shine for dashboards and ML demos. Pick Dear ImGui Bundle when you need native
         performance, offline desktop binary, or smooth web apps without dealing with HTML or a remote server.
       </p>
+      <div class="compare-fit-grid">
+        <div>
+          <h3>When it fits.</h3>
+          <p>Real-time tools, viewers, scientific UIs, creative apps, prototyping. Anything GPU-heavy, or cross-platform from one codebase.</p>
+        </div>
+        <div>
+          <h3>When to skip it.</h3>
+          <p>Form-heavy or accessibility-critical apps (limited screen-reader support). Apps that plug into a web design system.</p>
+        </div>
+      </div>
       <a class="compare-cta" href="https://imgui-bundle.pages.dev/doc/intro/compare">
         Full side-by-side comparison →
       </a>
