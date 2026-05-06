@@ -435,6 +435,35 @@
   .codewindow-bar .dot { width: 9px; height: 9px; border-radius: 50%; display: inline-block; }
   .codewindow-bar .filename { margin-left: 10px; }
   .codewindow-bar .lines { margin-left: auto; }
+  .codewindow-tabs {
+    display: flex;
+    gap: 2px;
+    margin-left: 10px;
+  }
+  .codewindow-tab {
+    background: transparent;
+    border: 1px solid transparent;
+    padding: 3px 10px;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--ink-muted);
+    cursor: pointer;
+    border-radius: 4px;
+    transition: color .15s, background .15s, border-color .15s;
+  }
+  .codewindow-tab:hover { color: var(--ink-dim); }
+  .codewindow[data-active="py"] .codewindow-tab[data-lang="py"],
+  .codewindow[data-active="cpp"] .codewindow-tab[data-lang="cpp"] {
+    color: var(--ink);
+    background: var(--bg-elev);
+    border-color: var(--border-bright);
+  }
+  .codewindow pre[data-lang] { display: none; }
+  .codewindow[data-active="py"] pre[data-lang="py"],
+  .codewindow[data-active="cpp"] pre[data-lang="cpp"] { display: block; }
+  .codewindow .lines[data-lang] { display: none; }
+  .codewindow[data-active="py"] .lines[data-lang="py"],
+  .codewindow[data-active="cpp"] .lines[data-lang="cpp"] { display: inline; }
   .codewindow pre {
     margin: 0; padding: 20px 24px;
     font-family: var(--mono); font-size: 13px; line-height: 1.7;
@@ -1241,15 +1270,19 @@
         </p>
       </div>
       <div class="codecard">
-        <div class="codewindow">
+        <div class="codewindow" data-active="py">
           <div class="codewindow-bar">
             <span class="dot" style="background:#ff5f56"></span>
             <span class="dot" style="background:#ffbd2e"></span>
             <span class="dot" style="background:#27c93f"></span>
-            <span class="filename">fruit_picker.py</span>
-            <span class="lines">9 lines</span>
+            <div class="codewindow-tabs">
+              <button type="button" class="codewindow-tab" data-lang="py">fruit_picker.py</button>
+              <button type="button" class="codewindow-tab" data-lang="cpp">fruit_picker.cpp</button>
+            </div>
+            <span class="lines" data-lang="py">9 lines</span>
+            <span class="lines" data-lang="cpp">12 lines</span>
           </div>
-<pre><span class="k">from</span> imgui_bundle <span class="k">import</span> imgui, hello_imgui
+<pre data-lang="py"><span class="k">from</span> imgui_bundle <span class="k">import</span> imgui, hello_imgui
 
 selected_idx = <span class="n">0</span>
 items = [<span class="s">"Apple"</span>, <span class="s">"Banana"</span>, <span class="s">"Cherry"</span>]
@@ -1261,6 +1294,21 @@ items = [<span class="s">"Apple"</span>, <span class="s">"Banana"</span>, <span 
     imgui.text(<span class="s">f"You selected: {items[selected_idx]}"</span>)
 
 hello_imgui.run(gui, window_title=<span class="s">"Fruit Picker"</span>, window_size_auto=<span class="n">True</span>)</pre>
+<pre data-lang="cpp"><span class="k">#include</span> <span class="s">"imgui.h"</span>
+<span class="k">#include</span> <span class="s">"hello_imgui/hello_imgui.h"</span>
+
+<span class="k">int</span> selected_idx = <span class="n">0</span>;
+<span class="k">const char</span>* items[] = { <span class="s">"Apple"</span>, <span class="s">"Banana"</span>, <span class="s">"Cherry"</span> };
+
+<span class="k">void</span> gui() {
+    ImGui::Text(<span class="s">"Choose a fruit:"</span>);
+    ImGui::ListBox(<span class="s">"##fruits"</span>, &amp;selected_idx, items, IM_ARRAYSIZE(items));
+    ImGui::Text(<span class="s">"You selected: %s"</span>, items[selected_idx]);
+}
+
+<span class="k">int</span> main() {
+    HelloImGui::Run(gui, <span class="s">"Fruit Picker"</span>, <span class="k">true</span>);
+}</pre>
           <div class="fruit-picker">
             <div class="fruit-chrome">
               <span class="dot" style="background:#ff5f56"></span>
@@ -1786,6 +1834,16 @@ hello_imgui.run(gui, window_title=<span class="s">"Fruit Picker"</span>, window_
         label.textContent = 'copy failed';
       }
       setTimeout(() => { label.textContent = original; }, 1600);
+    });
+  })();
+
+  // Codewindow language tabs
+  (function () {
+    document.querySelectorAll('.codewindow-tab').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const win = btn.closest('.codewindow');
+        if (win) win.dataset.active = btn.dataset.lang;
+      });
     });
   })();
 </script>
