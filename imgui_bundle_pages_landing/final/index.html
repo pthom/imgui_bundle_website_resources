@@ -1498,23 +1498,39 @@ hello_imgui.run(App().gui, window_title=<span class="s">"Fruit Picker"</span>, w
     <div class="eyebrow usedby-eyebrow">// in the wild</div>
     <h2>Real-time research, real codebases.</h2>
     <p class="usedby-sub">
-      Physics simulation, Gaussian splatting, neural rendering, volumetric video: 
-	  the projects below use Dear ImGui Bundle as an interactive viewerfor real time rendering together
-      with interactive parameters tweaking.
+      Physics &amp; robotics simulation, Gaussian splatting, neural rendering, volumetric video,
+      egocentric motion capture, biosignals, creative coding: the projects below use Dear ImGui Bundle
+      as an interactive viewer for real-time rendering, together with live parameter tweaking.
     </p>
     <div class="usedby-grid">
       <a class="usedby-card" href="https://github.com/newton-physics/newton" target="_blank" rel="noopener">
         <div class="usedby-card-head">
           <span class="usedby-card-name">Newton</span>
-          <span class="usedby-card-stars">&#9733; 4.8k</span>
+          <span class="usedby-card-stars">&#9733; 5.1k</span>
         </div>
         <div class="usedby-card-badge">Linux Foundation &middot; NVIDIA &middot; DeepMind &middot; Disney</div>
         <p class="usedby-card-desc">GPU-accelerated physics simulation for robotics.</p>
       </a>
+      <a class="usedby-card" href="https://github.com/Genesis-Embodied-AI/Genesis" target="_blank" rel="noopener">
+        <div class="usedby-card-head">
+          <span class="usedby-card-name">Genesis</span>
+          <span class="usedby-card-stars">&#9733; 29.3k</span>
+        </div>
+        <div class="usedby-card-badge">Genesis AI &middot; Embodied AI</div>
+        <p class="usedby-card-desc">Generative physics engine for robotics; ImGui overlay in its viewer.</p>
+      </a>
+      <a class="usedby-card" href="https://github.com/facebookresearch/nymeria_dataset" target="_blank" rel="noopener">
+        <div class="usedby-card-head">
+          <span class="usedby-card-name">Nymeria</span>
+          <span class="usedby-card-stars">&#9733; 0.2k</span>
+        </div>
+        <div class="usedby-card-badge">Meta &middot; Project Aria</div>
+        <p class="usedby-card-desc">Egocentric human-motion dataset with an imgui_bundle viewer.</p>
+      </a>
       <a class="usedby-card" href="https://github.com/zju3dv/EasyVolcap" target="_blank" rel="noopener">
         <div class="usedby-card-head">
           <span class="usedby-card-name">EasyVolcap &middot; 4K4D</span>
-          <span class="usedby-card-stars">&#9733; 1.5k &middot; 1.8k</span>
+          <span class="usedby-card-stars">&#9733; 1.6k &middot; 1.8k</span>
         </div>
         <div class="usedby-card-badge">SIGGRAPH Asia 2023 &middot; CVPR 2024</div>
         <p class="usedby-card-desc">Neural volumetric video and real-time 4D view synthesis at 4K (ZJU3DV).</p>
@@ -1522,7 +1538,7 @@ hello_imgui.run(App().gui, window_title=<span class="s">"Fruit Picker"</span>, w
       <a class="usedby-card" href="https://github.com/theialab/powerfoam" target="_blank" rel="noopener">
         <div class="usedby-card-head">
           <span class="usedby-card-name">Power Foam</span>
-          <span class="usedby-card-stars">&#9733; 0.1k</span>
+          <span class="usedby-card-stars">&#9733; 0.2k</span>
         </div>
         <div class="usedby-card-badge">arXiv 2026 &middot; TheiaLab</div>
         <p class="usedby-card-desc">Real-time differentiable ray tracing and rasterization.</p>
@@ -1534,6 +1550,22 @@ hello_imgui.run(App().gui, window_title=<span class="s">"Fruit Picker"</span>, w
         </div>
         <div class="usedby-card-badge">Gaussian Splatting</div>
         <p class="usedby-card-desc">Interactive 3D Gaussian Splatting viewer.</p>
+      </a>
+      <a class="usedby-card" href="https://github.com/NsquaredLab/MyoGestic" target="_blank" rel="noopener">
+        <div class="usedby-card-head">
+          <span class="usedby-card-name">MyoGestic</span>
+          <span class="usedby-card-stars">&#9733; 26</span>
+        </div>
+        <div class="usedby-card-badge">FAU Erlangen &middot; n&sup2;-lab</div>
+        <p class="usedby-card-desc">Real-time EMG / biosignal framework for myocontrol &amp; prosthetics research.</p>
+      </a>
+      <a class="usedby-card" href="https://github.com/BrokenSource/ShaderFlow" target="_blank" rel="noopener">
+        <div class="usedby-card-head">
+          <span class="usedby-card-name">ShaderFlow</span>
+          <span class="usedby-card-stars">&#9733; 0.1k</span>
+        </div>
+        <div class="usedby-card-badge">Creative coding &middot; BrokenSource</div>
+        <p class="usedby-card-desc">Audio-reactive GLSL shader engine with a realtime imgui_bundle preview.</p>
       </a>
     </div>
     <p class="usedby-integrations-lead">// also embedded in graphics frameworks</p>
@@ -1557,6 +1589,22 @@ hello_imgui.run(App().gui, window_title=<span class="s">"Fruit Picker"</span>, w
         <strong>WebGPU</strong> (1.5k &#9733;), usable in Jupyter, Qt and glfw.
         Subplot toolbars, right-click menus and custom in-canvas UI are built with imgui_bundle via
         <code>fastplotlib.ui.EdgeWindow</code> (<code>pip install fastplotlib[imgui]</code>).
+      </li>
+      <li>
+        <a href="https://github.com/mortacious/pyvista-imgui" target="_blank" rel="noopener"><strong>pyvista-imgui</strong></a>:
+        embeds <a href="https://github.com/pyvista/pyvista" target="_blank" rel="noopener">PyVista</a>'s
+        VTK 3D scene inside a Dear ImGui window via an <code>ImguiPlotter</code>, standalone or in your own UI.
+        By Felix Igelbrink (DFKI).
+      </li>
+      <li>
+        <a href="https://github.com/harskish/pyviewer" target="_blank" rel="noopener"><strong>pyviewer</strong></a>:
+        interactive viewer for NumPy arrays and PyTorch tensors (incl. GPU tensors) for ML / graphics
+        debugging; its toolbar UI and plots are built with imgui_bundle (<code>imgui</code> + <code>implot</code>).
+      </li>
+      <li>
+        <a href="https://github.com/Scr44gr/arepy" target="_blank" rel="noopener"><strong>arepy</strong></a>:
+        a lightweight Python ECS game engine; exposes imgui_bundle directly
+        (<code>imgui</code> + <code>imgui_ctx</code>) for in-game tools and debug overlays.
       </li>
     </ul>
     <p class="usedby-foot">
