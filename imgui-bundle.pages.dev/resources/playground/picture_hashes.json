@@ -36,6 +36,7 @@
   "demo_touch_screen": "e0b99828e5b0",
   "demo_widgets": "6865a6635565",
   "double_pendulum": "3d913ecefb58",
+  "example_python_backend_glfw3": "9a30d45b72db",
   "fiatlight_dataframe": "eb2a741de587",
   "fiatlight_image": "757245b26c5b",
   "fourier_epicycles": "d3fad99ffdc0",
