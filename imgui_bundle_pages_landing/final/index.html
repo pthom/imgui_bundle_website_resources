@@ -166,6 +166,8 @@
     transition: border-color .15s;
   }
   .install-cmd:hover { border-color: var(--accent3); }
+  .install-cmd .cmd { white-space: nowrap; }
+  @media (max-width: 360px) { .install-cmd { font-size: 12px; gap: 8px; padding: 14px 12px; } }
   .install-cmd .dollar { color: var(--accent3); }
   .install-cmd .pip { color: var(--ink-dim); }
   .install-cmd .copy {
@@ -196,6 +198,12 @@
   .cta-secondary:hover {
     color: var(--accent3);
     border-bottom-color: var(--accent3);
+  }
+
+  .cta-note {
+    margin: 12px 0 0; max-width: 520px;
+    font-size: 13px; line-height: 1.5;
+    color: var(--ink-muted);
   }
 
   .compat {
@@ -1284,12 +1292,13 @@
         <div class="install-row">
           <button type="button" class="install-cmd" id="installCmd" aria-label="Copy install command">
             <span class="dollar">$</span>
-            <span><span class="pip">pip install</span> imgui-bundle</span>
+            <span class="cmd"><span class="pip">pip install</span> imgui-bundle</span>
             <span class="copy" id="copyLabel">copy</span>
           </button>
-          <a href="/playground/" class="cta">Try in Playground →</a>
+          <a href="/playground/" class="cta" title="The playground: a live editor; your code runs on your device, with Pyodide (Python compiled to WebAssembly).">Run Python in your browser →</a>
           <a href="/doc/" class="cta-secondary">Read the docs →</a>
         </div>
+        <p class="cta-note">The playground: a live editor; your code runs on your device, with Pyodide (Python compiled to WebAssembly).</p>
 
         <div class="compat">
           <span>✓ Windows</span>
@@ -1299,6 +1308,7 @@
         </div>
       </div>
 
+      <div>
       <div class="explorer">
         <div class="explorer-chrome">
           <span class="dot r"></span>
@@ -1310,10 +1320,13 @@
           <video class="explorer-video"
                  src="assets/explorer.mp4"
                  autoplay loop muted playsinline></video>
-          <a class="explorer-cover" href="/explorer/" aria-label="Open the Dear ImGui Bundle Explorer">
-            <span class="explorer-cta">Open Explorer →</span>
+          <a class="explorer-cover" href="/explorer/" aria-label="Open the Dear ImGui Bundle Explorer"
+             title="The explorer: the C++ library compiled to WebAssembly with Emscripten. Each demo shows its code, in C++ and Python.">
+            <span class="explorer-cta">Explore 65 demos →</span>
           </a>
         </div>
+      </div>
+      <p class="cta-note">The explorer: the C++ library compiled to WebAssembly with Emscripten. Each demo shows its code, in C++ and Python.</p>
       </div>
     </div>
   </section>
