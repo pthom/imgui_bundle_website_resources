@@ -175,36 +175,29 @@
     color: var(--ink-muted); font-size: 12px;
     user-select: none;
   }
-  .cta {
-    background: var(--accent);
-    color: #0d1117;
-    padding: 14px 22px;
-    border-radius: 8px;
-    font-size: 14px; font-weight: 600;
-    text-decoration: none;
-    display: flex; align-items: center; gap: 8px;
-    transition: filter .15s;
-  }
-  .cta:hover { filter: brightness(1.08); }
-  .cta-secondary {
-    color: var(--ink-dim);
-    font-size: 14px;
-    text-decoration: none;
-    padding: 14px 6px;
-    display: flex; align-items: center; gap: 6px;
-    border-bottom: 1px solid transparent;
-    transition: color .15s, border-color .15s;
-  }
-  .cta-secondary:hover {
-    color: var(--accent3);
-    border-bottom-color: var(--accent3);
-  }
 
-  .cta-note {
-    margin: 12px 0 0; max-width: 520px;
-    font-size: 13px; line-height: 1.5;
-    color: var(--ink-muted);
+  /* The three ways in: the playground, the explorer, the docs */
+  .doors {
+    margin-top: 48px;
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
   }
+  .door {
+    display: block;
+    background: var(--bg-elev);
+    border: 1px solid var(--border-bright);
+    border-top: 3px solid var(--accent);
+    border-radius: 8px;
+    padding: 16px 20px 18px;
+    text-decoration: none;
+    transition: border-color .15s, transform .15s;
+  }
+  .door:hover { border-color: var(--accent); transform: translateY(-1px); }
+  .door .door-title { font-size: 16px; font-weight: 600; color: var(--ink); }
+  .door .door-title .arrow { color: var(--accent); }
+  .door .door-text { margin-top: 6px; font-size: 13px; line-height: 1.5; color: var(--ink-dim); }
+  .door.docs { border-top-color: var(--accent3); }
+  .door.docs:hover { border-color: var(--accent3); }
+  .door.docs .door-title .arrow { color: var(--accent3); }
 
   .compat {
     margin-top: 28px;
@@ -256,18 +249,6 @@
     transition: background .15s;
   }
   .explorer-cover:hover { background: rgba(0, 0, 0, 0.18); }
-  .explorer-cta {
-    background: var(--accent);
-    color: #0d1117;
-    font-family: var(--sans);
-    font-size: 12px;
-    font-weight: 600;
-    padding: 8px 14px;
-    border-radius: 6px;
-    box-shadow: 0 4px 14px -2px rgba(0,0,0,0.5);
-    transition: filter .15s, transform .15s;
-  }
-  .explorer-cover:hover .explorer-cta { filter: brightness(1.08); transform: translateY(-1px); }
 
   /* ---------- Pillars ---------- */
   .pillars {
@@ -1201,6 +1182,13 @@
 
     .hero { padding: 48px 20px 24px; }
     .hero-grid { grid-template-columns: 1fr; gap: 40px; }
+    .doors { grid-template-columns: 1fr; gap: 12px; margin-top: 32px; }
+    /* On a phone, the ways in come before the explorer's video */
+    .hero { display: flex; flex-direction: column; }
+    .hero-grid { display: contents; }
+    .hero-grid > :first-child { order: 1; }
+    .doors { order: 2; }
+    .hero-grid > :last-child { order: 3; margin-top: 32px; }
     .hero h1 { font-size: 32px; }
     .hero p.lede { font-size: 16px; }
 
@@ -1295,10 +1283,7 @@
             <span class="cmd"><span class="pip">pip install</span> imgui-bundle</span>
             <span class="copy" id="copyLabel">copy</span>
           </button>
-          <a href="/playground/" class="cta" title="The playground: a live editor; your code runs on your device, with Pyodide (Python compiled to WebAssembly).">Run Python in your browser →</a>
-          <a href="/doc/" class="cta-secondary">Read the docs →</a>
         </div>
-        <p class="cta-note">The playground: a live editor; your code runs on your device, with Pyodide (Python compiled to WebAssembly).</p>
 
         <div class="compat">
           <span>✓ Windows</span>
@@ -1321,13 +1306,25 @@
                  src="assets/explorer.mp4"
                  autoplay loop muted playsinline></video>
           <a class="explorer-cover" href="/explorer/" aria-label="Open the Dear ImGui Bundle Explorer"
-             title="The explorer: the C++ library compiled to WebAssembly with Emscripten. Each demo shows its code, in C++ and Python.">
-            <span class="explorer-cta">Explore 65 demos →</span>
-          </a>
+             title="Open the explorer"></a>
         </div>
       </div>
-      <p class="cta-note">The explorer: the C++ library compiled to WebAssembly with Emscripten. Each demo shows its code, in C++ and Python.</p>
       </div>
+    </div>
+
+    <div class="doors">
+      <a class="door" href="/playground/">
+        <div class="door-title">Run Python in your browser <span class="arrow">→</span></div>
+        <div class="door-text">The playground: a live editor. Your code runs on your device, with Pyodide (Python compiled to WebAssembly).</div>
+      </a>
+      <a class="door" href="/explorer/">
+        <div class="door-title">Explore 65 demos <span class="arrow">→</span></div>
+        <div class="door-text">The explorer: each demo with its code, in C++ and Python. The C++ library compiled to WebAssembly with Emscripten.</div>
+      </a>
+      <a class="door docs" href="/doc/">
+        <div class="door-title">Read the docs <span class="arrow">→</span></div>
+        <div class="door-text">The book: guides, tutorials and the API reference, for Python and C++.</div>
+      </a>
     </div>
   </section>
 
