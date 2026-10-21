@@ -285,6 +285,11 @@
     grid-template-columns: repeat(3, 1fr);
     gap: 16px;
   }
+  .grid-2 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
   .pillar {
     background: var(--bg-elev);
     border: 1px solid var(--border);
@@ -1208,7 +1213,7 @@
     .builton h2 { font-size: 28px; }
     .webdeploy h2 { font-size: 28px; }
 
-    .grid-3 { grid-template-columns: 1fr; }
+    .grid-3, .grid-2 { grid-template-columns: 1fr; }
     .apps-grid { grid-template-columns: repeat(2, 1fr); }
     .philosophy-grid { grid-template-columns: 1fr; gap: 32px; }
     .philo-callout { grid-template-columns: 1fr; gap: 20px; margin-top: 40px; padding: 18px 20px; }
@@ -1310,6 +1315,30 @@
           </a>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- Teaching, and AI assistants -->
+  <section class="pillars">
+    <div class="eyebrow">// teaching · ai assistants</div>
+    <h2 class="h2">Lessons that run.<br />Apps your AI can check.</h2>
+    <div class="grid-2">
+      <a class="pillar" href="/playground/?demo=explorables/grokking/grokking.py" style="--pillar-color: var(--accent2);">
+        <h3>Interactive lessons</h3>
+        <p>Science and math to explore with sliders, from a link, on a computer or a phone. In Grokking, a narrated lesson, watch a small neural network memorize, then suddenly generalize.</p>
+        <div class="pillar-meta">
+          <span>/playground/  ·  explorables</span>
+          <span class="arrow">→</span>
+        </div>
+      </a>
+      <a class="pillar" href="/llms.txt" style="--pillar-color: var(--accent);">
+        <h3>Made for AI assistants</h3>
+        <p>Give your AI llms.txt: it writes an app with the bundle, runs it, and checks it with screenshots and the test engine, even in a chat's sandbox.</p>
+        <div class="pillar-meta">
+          <span>/llms.txt  ·  plain text</span>
+          <span class="arrow">→</span>
+        </div>
+      </a>
     </div>
   </section>
 
