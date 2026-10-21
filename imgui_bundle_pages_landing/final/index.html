@@ -198,6 +198,8 @@
   .door.docs { border-top-color: var(--accent3); }
   .door.docs:hover { border-color: var(--accent3); }
   .door.docs .door-title .arrow { color: var(--accent3); }
+  .door .door-name { color: var(--accent); font-weight: 600; }
+  .door.docs .door-name { color: var(--accent3); }
 
   .compat {
     margin-top: 28px;
@@ -1315,15 +1317,15 @@
     <div class="doors">
       <a class="door" href="/playground/">
         <div class="door-title">Run Python in your browser <span class="arrow">→</span></div>
-        <div class="door-text">The playground: every demo in Python, ready to edit and run. Your code runs on your device, with Pyodide (Python compiled to WebAssembly).</div>
+        <div class="door-text">The <span class="door-name">playground</span>: every demo in Python, ready to edit and run. Your code runs on your device, with Pyodide (Python compiled to WebAssembly).</div>
       </a>
       <a class="door" href="/explorer/">
         <div class="door-title">Explore 65 demos <span class="arrow">→</span></div>
-        <div class="door-text">The explorer: each demo with its code, in C++ and Python. The C++ library compiled to WebAssembly with Emscripten.</div>
+        <div class="door-text">The <span class="door-name">explorer</span>: each demo with its code, in C++ and Python. The C++ library compiled to WebAssembly with Emscripten.</div>
       </a>
       <a class="door docs" href="/doc/">
         <div class="door-title">Read the docs <span class="arrow">→</span></div>
-        <div class="door-text">The book: guides, tutorials and the API reference, for Python and C++.</div>
+        <div class="door-text">The <span class="door-name">book</span>: guides, tutorials and the API reference, for Python and C++.</div>
       </a>
     </div>
   </section>
