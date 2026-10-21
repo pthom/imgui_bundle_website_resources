@@ -1,0 +1,361 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Dear ImGui Bundle 1.93</title>
+<meta name="description" content="Dear ImGui Bundle 1.93: Dear ImGui 1.93, a renewed explorer and playground, phones and tablets, an API reference with live demos, RichMd, and two apps an AI built from llms.txt." />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Dear ImGui Bundle" />
+<meta property="og:title" content="Dear ImGui Bundle 1.93: what's new" />
+<meta property="og:description" content="Python and C++ GUIs for desktop, web and phones. A renewed explorer and playground, phones and tablets, an API reference with live demos." />
+<meta property="og:image" content="https://imgui-bundle.pages.dev/releases/1.93/img/video_poster.jpg" />
+<link rel="icon" href="img/logo.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300..700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg: #0d1117;
+    --bg-elev: #161b22;
+    --bg-inset: #0a0d12;
+    --border: #21262d;
+    --border-bright: #30363d;
+    --ink: #e6edf3;
+    --ink-dim: #8b949e;
+    --ink-muted: #6e7681;
+    --accent: #fbd141;
+    --accent2: #3fb950;
+    --accent3: #58a6ff;
+    --sans: 'Inter', system-ui, sans-serif;
+    --mono: 'JetBrains Mono', ui-monospace, monospace;
+  }
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: var(--bg); }
+  body { font-family: var(--sans); color: var(--ink); line-height: 1.55; -webkit-text-size-adjust: 100%; }
+  a { color: var(--accent3); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  code {
+    font-family: var(--mono); font-size: 0.9em;
+    background: var(--bg-elev); padding: 1px 6px; border-radius: 4px;
+  }
+  .page { max-width: 1120px; margin: 0 auto; padding: 0 32px; }
+
+  /* Top bar */
+  .topbar { border-bottom: 1px solid var(--border); }
+  .topbar .page { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-top: 12px; padding-bottom: 12px; flex-wrap: wrap; }
+  .brand { display: flex; align-items: center; gap: 12px; color: var(--ink); font-weight: 700; font-size: 18px; letter-spacing: -0.015em; }
+  .brand:hover { text-decoration: none; }
+  .brand img { width: 30px; height: 30px; border-radius: 50%; }
+  .nav { display: flex; gap: 20px; font-size: 14px; flex-wrap: wrap; }
+  .nav a { color: var(--ink-dim); }
+  .nav a:hover { color: var(--ink); text-decoration: none; }
+
+  /* Hero */
+  .hero { padding: 56px 0 28px; }
+  .term-line { font-family: var(--mono); font-size: 13px; color: var(--accent2); margin-bottom: 18px; }
+  .term-line .prompt { opacity: 0.6; }
+  h1 { font-size: clamp(34px, 6vw, 56px); line-height: 1.05; letter-spacing: -0.03em; margin: 0 0 18px; }
+  h1 .version { color: var(--accent); }
+  .lead { font-size: 19px; color: var(--ink-dim); max-width: 780px; margin: 0 0 26px; }
+  .lead strong { color: var(--ink); font-weight: 600; }
+  /* The three ways in: the playground, the explorer, the docs (as on the home page) */
+  .doors {
+    margin-top: 8px;
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
+  }
+  .door {
+    display: block;
+    background: var(--bg-elev);
+    border: 1px solid var(--border-bright);
+    border-top: 3px solid var(--accent);
+    border-radius: 8px;
+    padding: 16px 20px 18px;
+    text-decoration: none;
+    transition: border-color .15s, transform .15s;
+  }
+  .door:hover { border-color: var(--accent); transform: translateY(-1px); text-decoration: none; }
+  .door .door-title { font-size: 16px; font-weight: 600; color: var(--ink); }
+  .door .door-title .arrow { color: var(--accent); }
+  .door .door-text { margin-top: 6px; font-size: 13px; line-height: 1.5; color: var(--ink-dim); }
+  .door.docs { border-top-color: var(--accent3); }
+  .door.docs:hover { border-color: var(--accent3); }
+  .door.docs .door-title .arrow { color: var(--accent3); }
+  .door .door-label {
+    font-family: var(--mono); font-size: 11px;
+    color: var(--ink-muted);
+    letter-spacing: 0.1em; text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .changelog-line { margin-top: 18px; font-size: 15px; color: var(--ink-dim); }
+
+  /* Video */
+  .video { margin: 12px 0 8px; }
+  .video video {
+    width: 100%; display: block; border-radius: 12px; border: 1px solid var(--border-bright);
+    background: var(--bg-inset); aspect-ratio: 16 / 9;
+  }
+  .caption { font-size: 13px; color: var(--ink-muted); margin-top: 8px; }
+
+  /* Sections */
+  section { padding: 40px 0; border-top: 1px solid var(--border); }
+  h2 { font-size: 28px; letter-spacing: -0.02em; margin: 0 0 8px; }
+  .section-lead { color: var(--ink-dim); margin: 0 0 28px; max-width: 760px; }
+
+  /* Highlights */
+  .highlight { display: grid; grid-template-columns: 1.25fr 1fr; gap: 36px; align-items: center; padding: 28px 0; }
+  .highlight + .highlight { border-top: 1px dashed var(--border); }
+  .highlight:nth-child(even) .shot { order: 2; }
+  .highlight.wide { grid-template-columns: 1fr; }
+  .highlight.wide .shot { order: 0; }
+  .highlight.wide > div:last-child { max-width: 780px; }
+  .shot img { width: 100%; display: block; border-radius: 10px; border: 1px solid var(--border-bright); }
+  .shot .pair { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .shot .credit { font-size: 12px; color: var(--ink-muted); margin-top: 6px; }
+  .num { font-family: var(--mono); font-size: 13px; color: var(--accent); margin-bottom: 6px; }
+  .highlight h3 { font-size: 23px; letter-spacing: -0.015em; line-height: 1.2; margin: 0 0 10px; }
+  .highlight p { margin: 0 0 10px; color: var(--ink-dim); }
+  .highlight p strong { color: var(--ink); font-weight: 600; }
+  .links { display: flex; flex-wrap: wrap; gap: 8px 18px; margin-top: 14px; font-weight: 600; font-size: 15px; }
+  .links a::after { content: " \2192"; }
+
+  /* Also new */
+  .also { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  .card { background: var(--bg-elev); border: 1px solid var(--border); border-radius: 10px; padding: 16px 18px; }
+  .card h4 { margin: 0 0 6px; font-size: 16px; }
+  .card p { margin: 0; color: var(--ink-dim); font-size: 14.5px; }
+
+  /* Users */
+  .users { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px 28px; padding: 0; margin: 0; list-style: none; }
+  .users li { color: var(--ink-dim); }
+  .users li a { font-weight: 600; }
+
+  /* Thanks */
+  .thanks p { color: var(--ink-dim); margin: 0 0 12px; max-width: 860px; }
+  .thanks strong { color: var(--ink); font-weight: 600; }
+
+  footer { border-top: 1px solid var(--border); padding: 28px 0 48px; color: var(--ink-muted); font-size: 14px; }
+  footer .install { font-family: var(--mono); color: var(--accent2); margin-bottom: 10px; }
+
+  @media (max-width: 860px) {
+    .page { padding: 0 16px; }
+    .doors { grid-template-columns: 1fr; gap: 12px; }
+    .highlight { grid-template-columns: 1fr; gap: 16px; }
+    .highlight:nth-child(even) .shot { order: 0; }
+    .shot .pair { grid-template-columns: 1fr; }
+    .also { grid-template-columns: 1fr; }
+    .users { grid-template-columns: 1fr; }
+    .lead { font-size: 17px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="page">
+    <a class="brand" href="https://imgui-bundle.pages.dev/"><img src="img/logo.png" alt="" />Dear ImGui Bundle</a>
+    <nav class="nav">
+      <a href="https://imgui-bundle.pages.dev/playground/">Playground</a>
+      <a href="https://imgui-bundle.pages.dev/explorer/">Explorer</a>
+      <a href="https://imgui-bundle.pages.dev/doc/">Docs</a>
+      <a href="https://github.com/pthom/imgui_bundle">GitHub</a>
+    </nav>
+  </div>
+</header>
+
+<main class="page">
+
+  <div class="hero">
+    <div class="term-line"><span class="prompt">$</span> pip install -U imgui-bundle</div>
+    <h1>Dear ImGui Bundle <span class="version">1.93</span></h1>
+    <p class="lead">
+      Python and C++ GUIs for real-time tools and playful sketches. The same code runs on the desktop, in the browser and on phones, with no server.
+      This release <strong>renews the explorer and the playground</strong>, which now work as well on phones and tablets, and <strong>adds an API reference with live demos</strong>. It also brings <strong>Dear ImGui 1.93</strong>: 865 commits since 1.92.900.
+    </p>
+    <div class="doors">
+      <a class="door" href="https://imgui-bundle.pages.dev/playground/">
+        <div class="door-label">// playground</div>
+        <div class="door-title">Run Python in your browser <span class="arrow">→</span></div>
+        <div class="door-text">Every demo in Python, ready to edit and run. Your code runs on your device, with Pyodide (Python compiled to WebAssembly).</div>
+      </a>
+      <a class="door" href="https://imgui-bundle.pages.dev/explorer/">
+        <div class="door-label">// explorer</div>
+        <div class="door-title">Explore 65 demos <span class="arrow">→</span></div>
+        <div class="door-text">Each demo with its code, in C++ and Python. The C++ library compiled to WebAssembly with Emscripten.</div>
+      </a>
+      <a class="door docs" href="https://imgui-bundle.pages.dev/doc/">
+        <div class="door-label">// docs</div>
+        <div class="door-title">Read the docs <span class="arrow">→</span></div>
+        <div class="door-text">Guides, tutorials and the API reference, for Python and C++.</div>
+      </a>
+    </div>
+    <p class="changelog-line">Every change, and how to upgrade: <a href="https://github.com/pthom/imgui_bundle/releases/tag/v1.93.0">the full changelog</a>.</p>
+  </div>
+
+  <div class="video">
+    <video src="whats_new.mp4" poster="img/video_poster.jpg" controls playsinline preload="metadata"></video>
+    <div class="caption">What's new in one minute: the explorer, the API tab, RichMd, the node editor, phones.</div>
+  </div>
+
+  <section>
+    <h2>The highlights</h2>
+    <p class="section-lead">Each one links to a live demo: it runs in your browser, with its code beside it.</p>
+
+    <div class="highlights">
+
+      <article class="highlight">
+        <div class="shot"><img src="img/welcome.jpg" alt="The playground's welcome screen: a carousel of live slides, here a drum machine with knobs and the Dear ImGui manual" loading="lazy" /></div>
+        <div>
+          <div class="num">01</div>
+          <h3>A renewed explorer and playground</h3>
+          <p>One welcome screen: a carousel of eleven live slides, from plots and a GPU shader to a neural network and a node editor.</p>
+          <p>Then <strong>a gallery of the demos</strong>, by category, with a search box. Each demo shows its code and runs in place. <strong>Light and dark</strong>, on a desktop or on a phone.</p>
+          <div class="links">
+            <a href="https://imgui-bundle.pages.dev/playground/">Run Python in your browser</a>
+            <a href="https://imgui-bundle.pages.dev/explorer/">Explore 65 demos</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="highlight wide">
+        <div class="shot">
+          <div class="pair">
+            <img src="img/rotor.jpg" alt="The rotor run-up monitor: live acceleration, spectrum and spectrogram plots, with knobs" loading="lazy" />
+            <img src="img/health_and_wealth.jpg" alt="Health and wealth of nations in 1918: bubbles per country, and a card on the influenza pandemic" loading="lazy" />
+          </div>
+        </div>
+        <div>
+          <div class="num">02</div>
+          <h3>Two apps an AI built from llms.txt</h3>
+          <p>Claude wrote them in a plain chat, given only the bundle's guide for AI assistants, and checked its work with its own screenshots.</p>
+          <p><strong>The rotor run-up monitor</strong>: a vibration-analysis dashboard. Toggle a bearing defect, and watch it in the spectrum. <strong>Health and wealth</strong>: the nations from 1800 to 2100, after Hans Rosling's Gapminder, with the data fetched live.</p>
+          <div class="links">
+            <a href="https://imgui-bundle.pages.dev/playground/?demo=explorables/rotor_dashboard.py">Run the rotor monitor</a>
+            <a href="https://imgui-bundle.pages.dev/playground/?demo=explorables/health_and_wealth.py">Run Health and wealth</a>
+            <a href="https://imgui-bundle.pages.dev/llms.txt">The guide: llms.txt</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="highlight">
+        <div class="shot"><img src="img/phones.jpg" alt="Two phone screens: the neural network slide of the explorer, and Health and wealth in the playground" loading="lazy" /></div>
+        <div>
+          <div class="num">03</div>
+          <h3>Phones and tablets, with nothing to write</h3>
+          <p>Hello ImGui turns a finger into what its user expects: <strong>a swipe scrolls</strong> with inertia, a tap clicks, a long press is a right click, <strong>two fingers pinch</strong> to scale, and a text field opens the keyboard.</p>
+          <p>Every demo of the explorer and the playground was checked on a phone.</p>
+          <div class="links">
+            <a href="https://imgui-bundle.pages.dev/playground/?demo=demo_touch_screen.py">Every gesture, in a demo</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="highlight">
+        <div class="shot">
+          <img src="https://github.com/user-attachments/assets/039215b9-dd92-42a4-9ae7-657c79eaa6a6" alt="Dear ImGui 1.93's demo of the draw list: shapes under each stroke flag" loading="lazy" />
+          <div class="credit">Picture: Dear ImGui 1.93.0's release notes.</div>
+        </div>
+        <div>
+          <div class="num">04</div>
+          <h3>Dear ImGui 1.93: crisper drawing</h3>
+          <p>The draw list is reworked: widgets look the same or crisper, with new stroke flags for custom drawing. A drag or a slider edit can be cancelled with a right click or Escape.</p>
+          <p>Custom drawing can move by half a pixel: the changelog says how to migrate.</p>
+          <div class="links">
+            <a href="https://github.com/ocornut/imgui/releases/tag/v1.93.0">Dear ImGui 1.93.0</a>
+            <a href="https://github.com/pthom/imgui_bundle/blob/main/CHANGELOG.md#breaking-changes">The breaking changes</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="highlight">
+        <div class="shot"><img src="img/api_card.jpg" alt="The ImGui Explorer's API tab: the card of an ImPlot function beside its demo code" loading="lazy" /></div>
+        <div>
+          <div class="num">05</div>
+          <h3>An API reference, with live demos</h3>
+          <p><strong>The book's API pages</strong> cover all the bundle's libraries, in Python and C++. 450 entries of Dear ImGui, ImPlot and ImPlot3D show the demo that uses them: its picture, its code, and a link to run it.</p>
+          <p>In the <strong>ImGui Explorer</strong>, click an identifier in the code: its card shows its signatures, its doc, and the demo lines that use it.</p>
+          <div class="links">
+            <a href="https://imgui-bundle.pages.dev/doc/api/">The API reference</a>
+            <a href="https://pthom.github.io/imgui_explorer/">The ImGui Explorer</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="highlight">
+        <div class="shot"><img src="img/richmd.jpg" alt="A RichMd document: its table of contents, and a search that highlights its matches" loading="lazy" /></div>
+        <div>
+          <div class="num">06</div>
+          <h3>RichMd: rich text you can select and search, with math</h3>
+          <p>The markdown renderer is now a standalone library, <strong>imgui_rich_md</strong>, which works with a stock Dear ImGui.</p>
+          <p>Documents with a table of contents and a search, <strong>selectable text</strong>, LaTeX math, <strong>Mermaid diagrams</strong> drawn natively, and widgets inside the text.</p>
+          <div class="links">
+            <a href="https://imgui-bundle.pages.dev/playground/?demo=demo_imgui_md_document.py">Run a document</a>
+            <a href="https://github.com/pthom/imgui_rich_md">imgui_rich_md</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="highlight">
+        <div class="shot"><img src="img/node_editor.jpg" alt="The node editor's image pipeline demo: nodes that draw the edges of a photo, then blend them with it" loading="lazy" /></div>
+        <div>
+          <div class="num">07</div>
+          <h3>The node editor on thedmd's v0.9.4</h3>
+          <p>About 110 fixes, and a test suite. <strong>Popups, combos and color pickers work inside nodes</strong>, and every editor follows the theme, light or dark.</p>
+          <p>Two new demos, in Python and C++: a color mixer and an image pipeline.</p>
+          <div class="links">
+            <a href="https://imgui-bundle.pages.dev/playground/?demo=demo_node_editor_image_pipeline.py">Run the image pipeline</a>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <section>
+    <h2>Also new</h2>
+    <p class="section-lead">Smaller, but worth knowing.</p>
+    <div class="also">
+      <div class="card"><h4>Python 3.15</h4><p>Wheels for Python 3.11 to 3.15, on every platform.</p></div>
+      <div class="card"><h4>A guide for AI assistants</h4><p><a href="https://imgui-bundle.pages.dev/llms.txt">llms.txt</a>: your assistant learns to write, run and check apps with the bundle.</p></div>
+      <div class="card"><h4>Stack Layout v2.2</h4><p>thedmd's horizontal and vertical layouts, with springs, adopted two days after their release.</p></div>
+      <div class="card"><h4>Ctrl+Tab on the Mac</h4><p>GLFW 3.5.1: Dear ImGui's window switcher now works there too.</p></div>
+      <div class="card"><h4>A neural network that learns</h4><p><a href="https://imgui-bundle.pages.dev/playground/?demo=explorables/neural_spiral/neural_spiral.py">Two spirals</a>, trained live, with the story told beside the code.</p></div>
+      <div class="card"><h4>A synthesizer</h4><p><a href="https://imgui-bundle.pages.dev/playground/?demo=webaudio_synth.py">A piano, tunes and a scope</a>, with WebAudio, in the browser.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Projects that use the bundle</h2>
+    <p class="section-lead">Among them, in robotics, 3D vision and plotting:</p>
+    <ul class="users">
+      <li><a href="https://github.com/newton-physics/newton">Newton</a> and <a href="https://github.com/isaac-sim/IsaacLab">Isaac Lab</a>: robotics simulation</li>
+      <li><a href="https://github.com/Genesis-Embodied-AI/Genesis">Genesis</a>: physics for robotics</li>
+      <li><a href="https://github.com/graphdeco-inria/graphdecoviewer">The Gaussian splatting viewer</a> of Inria's GRAPHDECO lab</li>
+      <li><a href="https://github.com/Florian-Barthel/splatviz">splatviz</a>: Gaussian splatting</li>
+      <li>Meta's <a href="https://github.com/facebookresearch/nymeria_dataset">Nymeria</a> viewer: human motion data</li>
+      <li><a href="https://github.com/fastplotlib/fastplotlib">fastplotlib</a>: GPU plotting</li>
+    </ul>
+  </section>
+
+  <section class="thanks">
+    <h2>Thanks</h2>
+    <p><strong>Omar Cornut</strong> for Dear ImGui 1.93, and <strong>Mikko Mononen</strong> for its new draw list. <strong>Michał Cichoń</strong> (thedmd) for Stack Layout v2.2 and imgui-node-editor v0.9.4. <strong>Breno Cunha Queiroz</strong> for ImPlot3D on Dear ImGui 1.93. <strong>Clay Dugo</strong> for a fix in litgen. <strong>Johan Goossens</strong>, <strong>cmd.wtf</strong> and <strong>dalerank</strong>, who merged our changes into ImGuiColorTextEdit, imgui_toggle and imspinner. And the users who reported issues.</p>
+    <p>In return, the bundle sent 20 pull requests to the libraries it uses: 10 are merged.</p>
+  </section>
+
+</main>
+
+<footer>
+  <div class="page">
+    <div class="install">$ pip install -U imgui-bundle</div>
+    <div>
+      <a href="https://github.com/pthom/imgui_bundle/releases/tag/v1.93.0">The full changelog</a> ·
+      <a href="https://imgui-bundle.pages.dev/doc/">Read the docs</a> ·
+      <a href="https://github.com/pthom/imgui_bundle">GitHub</a> ·
+      <a href="https://discord.gg/xkzpKMeYN3">Discord</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
