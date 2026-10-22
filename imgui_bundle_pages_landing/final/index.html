@@ -1192,7 +1192,32 @@
     margin-top: auto; padding-top: 10px;
     border-top: 1px dashed var(--border);
     letter-spacing: 0.08em;
+    display: flex; justify-content: space-between; align-items: baseline; gap: 12px;
   }
+  /* A real app of the kind, in the playground */
+  .app-run {
+    font-family: var(--sans); font-size: 13px; font-weight: 600;
+    letter-spacing: 0;
+    color: var(--app-color); text-decoration: none;
+    white-space: nowrap;
+  }
+  .app-run:hover { text-decoration: underline; }
+  /* Under the cards: the whole gallery, and how an AI assistant can help */
+  .apps-more { margin-top: 28px; display: flex; flex-direction: column; gap: 10px; }
+  .apps-more-link {
+    align-self: flex-start;
+    font-size: 15px; font-weight: 600;
+    color: var(--ink); text-decoration: none;
+  }
+  .apps-more-link .arrow { color: var(--accent); }
+  .apps-more-link:hover { text-decoration: underline; }
+  .apps-ai {
+    margin: 0; max-width: 720px;
+    font-size: 13px; line-height: 1.55;
+    color: var(--ink-muted);
+    overflow-wrap: anywhere;
+  }
+  .apps-ai a { color: var(--ink-dim); }
 
   /* ---------- Footer ---------- */
   .footer {
@@ -1536,9 +1561,9 @@ hello_imgui.run(App().gui, window_title=<span class="s">"Fruit Picker"</span>, w
         </button>
         <div>
           <h3>Interactive 2D &amp; 3D plots</h3>
-          <p>ImPlot and ImPlot3D — rotatable, zoomable, real-time. Stock prices, signals, scientific data.</p>
+          <p>ImPlot and ImPlot3D: rotatable, zoomable, real-time. Stock prices, signals, scientific data.</p>
         </div>
-        <div class="app-tag">// implot &amp; implot3d</div>
+        <div class="app-tag"><span>// implot &amp; implot3d</span><a class="app-run" href="/playground/?demo=explorables/rotor_dashboard.py">Run it →</a></div>
       </div>
 
       <div class="app-card" style="--app-color: var(--accent);">
@@ -1552,7 +1577,7 @@ hello_imgui.run(App().gui, window_title=<span class="s">"Fruit Picker"</span>, w
           <h3>GPU-accelerated rendering</h3>
           <p>Render directly on the GPU. Blend custom shaders and 3D content into your UI in real time.</p>
         </div>
-        <div class="app-tag">// shaders</div>
+        <div class="app-tag"><span>// shaders</span><a class="app-run" href="/playground/?demo=webgl_background_shader.py">Run it →</a></div>
       </div>
 
       <div class="app-card" style="--app-color: var(--accent2);">
@@ -1564,9 +1589,9 @@ hello_imgui.run(App().gui, window_title=<span class="s">"Fruit Picker"</span>, w
         </button>
         <div>
           <h3>Image analysis</h3>
-          <p>ImmVision — display, debug and inspect RGB and float images. Zoom, pan, pixel inspection, colormaps.</p>
+          <p>ImmVision: display, debug and inspect RGB and float images. Zoom, pan, pixel inspection, colormaps.</p>
         </div>
-        <div class="app-tag">// immvision</div>
+        <div class="app-tag"><span>// immvision</span><a class="app-run" href="/playground/?demo=demo_immvision_inspector.py">Run it →</a></div>
       </div>
 
       <div class="app-card" style="--app-color: #c084fc;">
@@ -1578,11 +1603,19 @@ hello_imgui.run(App().gui, window_title=<span class="s">"Fruit Picker"</span>, w
         </button>
         <div>
           <h3>Visual node editors</h3>
-          <p>Explore ideas in graph form — connect functions, see data flow, build pipelines visually.</p>
+          <p>Explore ideas in graph form: connect functions, see data flow, build pipelines visually.</p>
         </div>
-        <div class="app-tag">// imgui-node-editor</div>
+        <div class="app-tag"><span>// imgui-node-editor</span><a class="app-run" href="/playground/?demo=demo_node_editor_image_pipeline.py">Run it →</a></div>
       </div>
 
+    </div>
+    <div class="apps-more">
+      <a class="apps-more-link" href="/playground/">66 apps to start from <span class="arrow">→</span></a>
+      <p class="apps-ai">
+        Your AI assistant can help you start: ask it to read
+        <a href="/llms.txt">https://imgui-bundle.pages.dev/llms.txt</a>,
+        then give it the address of the demo you want to build on.
+      </p>
     </div>
   </section>
 
