@@ -1130,7 +1130,7 @@
   }
   .apps-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 16px;
   }
   .app-card {
@@ -1202,15 +1202,23 @@
     white-space: nowrap;
   }
   .app-run:hover { text-decoration: underline; }
-  /* Under the cards: the whole gallery, and how an AI assistant can help */
-  .apps-more { margin-top: 28px; display: flex; flex-direction: column; gap: 10px; }
-  .apps-more-link {
-    align-self: flex-start;
-    font-size: 15px; font-weight: 600;
-    color: var(--ink); text-decoration: none;
+  /* A picture in place of a video: a link to its app */
+  .app-picture { cursor: pointer; }
+  .app-picture img {
+    width: 100%; height: auto; display: block;
+    aspect-ratio: 16 / 9;
+    object-fit: cover; object-position: top;
   }
-  .apps-more-link .arrow { color: var(--accent); }
-  .apps-more-link:hover { text-decoration: underline; }
+  .app-picture:hover { border-color: var(--app-color); }
+  /* The apps of the kind, in the playground */
+  .app-card p.app-examples { margin-top: 10px; font-size: 13px; }
+  .app-examples a {
+    color: var(--ink);
+    text-decoration: underline; text-decoration-color: var(--border-bright); text-underline-offset: 3px;
+  }
+  .app-examples a:hover { text-decoration-color: var(--app-color); }
+  /* Under the cards: how an AI assistant can help */
+  .apps-more { margin-top: 28px; }
   .apps-ai {
     margin: 0; max-width: 720px;
     font-size: 13px; line-height: 1.55;
@@ -1439,27 +1447,106 @@
     </div>
   </section>
 
-  <!-- Teaching, and AI assistants -->
-  <section class="pillars">
-    <div class="eyebrow">// teaching · ai assistants</div>
-    <h2 class="h2">Lessons that run.<br />Apps your AI can check.</h2>
-    <div class="grid-2">
-      <a class="pillar" href="/playground/?demo=explorables/grokking/grokking.py" style="--pillar-color: var(--accent2);">
-        <h3>Interactive lessons</h3>
-        <p>Science and math to explore with sliders, from a link, on a computer or a phone. In Grokking, a narrated lesson, watch a small neural network memorize, then suddenly generalize.</p>
-        <div class="pillar-meta">
-          <span>/playground/  ·  explorables</span>
-          <span class="arrow">→</span>
+  <!-- Applications -->
+  <section class="apps">
+    <div class="apps-header">
+      <div>
+        <div class="eyebrow">// capabilities</div>
+        <h2>What you can build with it.</h2>
+      </div>
+    </div>
+    <div class="apps-grid">
+      <div class="app-card" style="--app-color: var(--accent3);">
+        <button type="button" class="app-video" data-zoom-src="assets/demo_implot_implot3d.mp4" aria-label="Enlarge ImPlot / ImPlot3D demo video">
+          <video src="assets/demo_implot_implot3d.mp4"
+                 autoplay loop muted playsinline
+                 aria-label="ImPlot / ImPlot3D demo"></video>
+          <span class="app-video-zoom">click to enlarge</span>
+        </button>
+        <div>
+          <h3>Interactive 2D &amp; 3D plots</h3>
+          <p>ImPlot and ImPlot3D: rotatable, zoomable, real-time. Stock prices, signals, scientific data.</p>
+          <p class="app-examples">In the playground: <a href="/playground/?demo=explorables/rotor_dashboard.py">a vibration dashboard for a rotor</a>; <a href="/playground/?demo=explorables/health_and_wealth.py">the health and wealth of nations</a>.</p>
         </div>
-      </a>
-      <a class="pillar" href="/llms.txt" style="--pillar-color: var(--accent);">
-        <h3>Made for AI assistants</h3>
-        <p>Give your AI llms.txt: it writes an app with the bundle, runs it, and checks it with screenshots and the test engine, even in a chat's sandbox.</p>
-        <div class="pillar-meta">
-          <span>/llms.txt  ·  plain text</span>
-          <span class="arrow">→</span>
+        <div class="app-tag"><span>// implot &amp; implot3d</span><a class="app-run" href="/playground/?demo=explorables/rotor_dashboard.py">Run it →</a></div>
+      </div>
+
+      <div class="app-card" style="--app-color: var(--accent);">
+        <button type="button" class="app-video" data-zoom-src="assets/demo_gpu.mp4" aria-label="Enlarge GPU rendering demo video">
+          <video src="assets/demo_gpu.mp4"
+                 autoplay loop muted playsinline
+                 aria-label="GPU-accelerated rendering demo"></video>
+          <span class="app-video-zoom">click to enlarge</span>
+        </button>
+        <div>
+          <h3>GPU-accelerated rendering</h3>
+          <p>Render directly on the GPU. Blend custom shaders and 3D content into your UI in real time.</p>
+          <p class="app-examples">In the playground: <a href="/playground/?demo=webgl_background_shader.py">a sea drawn by a shader</a>; <a href="/playground/?demo=webgl_texture_in_image.py">a 3D cube in a texture</a>.</p>
         </div>
-      </a>
+        <div class="app-tag"><span>// shaders</span><a class="app-run" href="/playground/?demo=webgl_background_shader.py">Run it →</a></div>
+      </div>
+
+      <div class="app-card" style="--app-color: var(--accent2);">
+        <button type="button" class="app-video" data-zoom-src="assets/demo_immvision.mp4" aria-label="Enlarge ImmVision demo video">
+          <video src="assets/demo_immvision.mp4"
+                 autoplay loop muted playsinline
+                 aria-label="ImmVision image analysis demo"></video>
+          <span class="app-video-zoom">click to enlarge</span>
+        </button>
+        <div>
+          <h3>Image analysis</h3>
+          <p>ImmVision: display, debug and inspect RGB and float images. Zoom, pan, pixel inspection, colormaps.</p>
+          <p class="app-examples">In the playground: <a href="/playground/?demo=demo_immvision_inspector.py">ImmVision's image inspector</a>.</p>
+        </div>
+        <div class="app-tag"><span>// immvision</span><a class="app-run" href="/playground/?demo=demo_immvision_inspector.py">Run it →</a></div>
+      </div>
+
+      <div class="app-card" style="--app-color: #c084fc;">
+        <button type="button" class="app-video" data-zoom-src="assets/demo_node_fiatlight.mp4" aria-label="Enlarge node editor / fiatlight demo video">
+          <video src="assets/demo_node_fiatlight.mp4"
+                 autoplay loop muted playsinline
+                 aria-label="Node editor / fiatlight demo"></video>
+          <span class="app-video-zoom">click to enlarge</span>
+        </button>
+        <div>
+          <h3>Visual node editors</h3>
+          <p>Explore ideas in graph form: connect functions, see data flow, build pipelines visually.</p>
+          <p class="app-examples">In the playground: <a href="/playground/?demo=demo_node_editor_color_mixer.py">a color mixer</a>; <a href="/playground/?demo=demo_node_editor_image_pipeline.py">an image pipeline</a>.</p>
+        </div>
+        <div class="app-tag"><span>// imgui-node-editor</span><a class="app-run" href="/playground/?demo=demo_node_editor_image_pipeline.py">Run it →</a></div>
+      </div>
+
+      <div class="app-card" style="--app-color: #ffa657;">
+        <a class="app-video app-picture" href="/playground/?demo=explorables/neural_spiral/neural_spiral.py" aria-label="Run the neural network that learns two spirals">
+          <img src="assets/neural_spiral.jpg" alt="A neural network that learns two spirals: its decision regions, and its loss" loading="lazy" />
+        </a>
+        <div>
+          <h3>Interactive science and lessons</h3>
+          <p>Science and math to explore with sliders, from a link, on a computer or a phone.</p>
+          <p class="app-examples">In the playground: <a href="/playground/?demo=explorables/grokking/grokking.py">Grokking, a narrated lesson</a>; <a href="/playground/?demo=explorables/neural_spiral/neural_spiral.py">a neural network that learns two spirals</a>; <a href="/playground/?demo=explorables/fourier_epicycles.py">Fourier epicycles</a>.</p>
+        </div>
+        <div class="app-tag"><span>// explorables</span><a class="app-run" href="/playground/?demo=explorables/grokking/grokking.py">Run it →</a></div>
+      </div>
+
+      <div class="app-card" style="--app-color: #39c5cf;">
+        <a class="app-video app-picture" href="/playground/" aria-label="Open the playground and its gallery of demos">
+          <img src="assets/playground_gallery.jpg" alt="The playground's gallery: the demos by category, each with its picture" loading="lazy" />
+        </a>
+        <div>
+          <h3>66 apps to start from</h3>
+          <p>Each one runs in your browser, next to its code: short, readable, ready to copy.</p>
+          <p class="app-examples">Also: Matplotlib, Seaborn and Cartopy, the interactive manuals, app templates.</p>
+        </div>
+        <div class="app-tag"><span>// playground</span><a class="app-run" href="/playground/">Explore them all →</a></div>
+      </div>
+
+    </div>
+    <div class="apps-more">
+      <p class="apps-ai">
+        Your AI assistant can help you start: ask it to read
+        <a href="/llms.txt">https://imgui-bundle.pages.dev/llms.txt</a>,
+        then give it the address of the demo you want to build on.
+      </p>
     </div>
   </section>
 
@@ -1540,82 +1627,6 @@ hello_imgui.run(App().gui, window_title=<span class="s">"Fruit Picker"</span>, w
           </div>
         </div>
       </div>
-    </div>
-  </section>
-
-  <!-- Applications -->
-  <section class="apps">
-    <div class="apps-header">
-      <div>
-        <div class="eyebrow">// capabilities</div>
-        <h2>What you can build with it.</h2>
-      </div>
-    </div>
-    <div class="apps-grid">
-      <div class="app-card" style="--app-color: var(--accent3);">
-        <button type="button" class="app-video" data-zoom-src="assets/demo_implot_implot3d.mp4" aria-label="Enlarge ImPlot / ImPlot3D demo video">
-          <video src="assets/demo_implot_implot3d.mp4"
-                 autoplay loop muted playsinline
-                 aria-label="ImPlot / ImPlot3D demo"></video>
-          <span class="app-video-zoom">click to enlarge</span>
-        </button>
-        <div>
-          <h3>Interactive 2D &amp; 3D plots</h3>
-          <p>ImPlot and ImPlot3D: rotatable, zoomable, real-time. Stock prices, signals, scientific data.</p>
-        </div>
-        <div class="app-tag"><span>// implot &amp; implot3d</span><a class="app-run" href="/playground/?demo=explorables/rotor_dashboard.py">Run it →</a></div>
-      </div>
-
-      <div class="app-card" style="--app-color: var(--accent);">
-        <button type="button" class="app-video" data-zoom-src="assets/demo_gpu.mp4" aria-label="Enlarge GPU rendering demo video">
-          <video src="assets/demo_gpu.mp4"
-                 autoplay loop muted playsinline
-                 aria-label="GPU-accelerated rendering demo"></video>
-          <span class="app-video-zoom">click to enlarge</span>
-        </button>
-        <div>
-          <h3>GPU-accelerated rendering</h3>
-          <p>Render directly on the GPU. Blend custom shaders and 3D content into your UI in real time.</p>
-        </div>
-        <div class="app-tag"><span>// shaders</span><a class="app-run" href="/playground/?demo=webgl_background_shader.py">Run it →</a></div>
-      </div>
-
-      <div class="app-card" style="--app-color: var(--accent2);">
-        <button type="button" class="app-video" data-zoom-src="assets/demo_immvision.mp4" aria-label="Enlarge ImmVision demo video">
-          <video src="assets/demo_immvision.mp4"
-                 autoplay loop muted playsinline
-                 aria-label="ImmVision image analysis demo"></video>
-          <span class="app-video-zoom">click to enlarge</span>
-        </button>
-        <div>
-          <h3>Image analysis</h3>
-          <p>ImmVision: display, debug and inspect RGB and float images. Zoom, pan, pixel inspection, colormaps.</p>
-        </div>
-        <div class="app-tag"><span>// immvision</span><a class="app-run" href="/playground/?demo=demo_immvision_inspector.py">Run it →</a></div>
-      </div>
-
-      <div class="app-card" style="--app-color: #c084fc;">
-        <button type="button" class="app-video" data-zoom-src="assets/demo_node_fiatlight.mp4" aria-label="Enlarge node editor / fiatlight demo video">
-          <video src="assets/demo_node_fiatlight.mp4"
-                 autoplay loop muted playsinline
-                 aria-label="Node editor / fiatlight demo"></video>
-          <span class="app-video-zoom">click to enlarge</span>
-        </button>
-        <div>
-          <h3>Visual node editors</h3>
-          <p>Explore ideas in graph form: connect functions, see data flow, build pipelines visually.</p>
-        </div>
-        <div class="app-tag"><span>// imgui-node-editor</span><a class="app-run" href="/playground/?demo=demo_node_editor_image_pipeline.py">Run it →</a></div>
-      </div>
-
-    </div>
-    <div class="apps-more">
-      <a class="apps-more-link" href="/playground/">66 apps to start from <span class="arrow">→</span></a>
-      <p class="apps-ai">
-        Your AI assistant can help you start: ask it to read
-        <a href="/llms.txt">https://imgui-bundle.pages.dev/llms.txt</a>,
-        then give it the address of the demo you want to build on.
-      </p>
     </div>
   </section>
 
