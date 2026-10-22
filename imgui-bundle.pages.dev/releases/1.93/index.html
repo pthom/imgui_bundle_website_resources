@@ -109,7 +109,7 @@
   .highlight.wide { grid-template-columns: 1fr; }
   .highlight.wide .shot { order: 0; }
   .highlight.wide > div:last-child { max-width: 780px; }
-  .shot img { width: 100%; display: block; border-radius: 10px; border: 1px solid var(--border-bright); }
+  .shot img, .shot video { width: 100%; display: block; border-radius: 10px; border: 1px solid var(--border-bright); }
   .shot .pair { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
   .shot .credit { font-size: 12px; color: var(--ink-muted); margin-top: 6px; }
   .num { font-family: var(--mono); font-size: 13px; color: var(--accent); margin-bottom: 6px; }
@@ -296,7 +296,7 @@
       </article>
 
       <article class="highlight">
-        <div class="shot"><img src="img/richmd.jpg" alt="A RichMd document: its table of contents, and a search that highlights its matches" loading="lazy" /></div>
+        <div class="shot"><video src="richmd.mp4" poster="img/richmd_video_poster.jpg" autoplay muted loop playsinline preload="metadata" aria-label="RichMd in 40 seconds: a page written live, a search, folds, a copy as Markdown, then a phone"></video></div>
         <div>
           <div class="num">06</div>
           <h3>RichMd: rich text you can select and search, with math</h3>
