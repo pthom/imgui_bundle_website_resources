@@ -147,11 +147,64 @@
   }
   .hero p.lede .ink { color: var(--ink); }
 
+  /* The latest release, above the hero's title */
+  .release-pill {
+    display: inline-flex; align-items: center; gap: 8px;
+    margin-bottom: 20px;
+    padding: 4px 12px 4px 4px;
+    border: 1px solid var(--border-bright); border-radius: 999px;
+    font-size: 13px; color: var(--ink-dim); text-decoration: none;
+    transition: border-color .15s, color .15s;
+  }
+  .release-pill:hover { border-color: var(--accent); color: var(--ink); }
+  .release-pill .release-tag {
+    font-family: var(--mono); font-size: 11px;
+    text-transform: uppercase; letter-spacing: 0.08em;
+    color: var(--bg); background: var(--accent);
+    border-radius: 999px; padding: 2px 8px;
+  }
+  .release-pill .arrow { color: var(--accent); }
+
+  /* The install command, with a tab for Python and one for C++ */
+  .install { margin-top: 36px; }
+  .install-tabs { display: flex; gap: 2px; margin-bottom: 8px; }
+  .install-tab {
+    background: transparent;
+    border: 1px solid transparent;
+    padding: 3px 10px;
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--ink-muted);
+    cursor: pointer;
+    border-radius: 4px;
+    transition: color .15s, background .15s, border-color .15s;
+  }
+  .install-tab:hover { color: var(--ink-dim); }
+  .install[data-active="py"] .install-tab[data-lang="py"],
+  .install[data-active="cpp"] .install-tab[data-lang="cpp"] {
+    color: var(--ink);
+    background: var(--bg-elev);
+    border-color: var(--border-bright);
+  }
+  .install-row[data-lang] { display: none; }
+  .install[data-active="py"] .install-row[data-lang="py"],
+  .install[data-active="cpp"] .install-row[data-lang="cpp"] { display: flex; }
   .install-row {
-    margin-top: 36px;
     display: flex; gap: 12px; align-items: stretch;
     flex-wrap: wrap;
   }
+  .install-note {
+    flex-basis: 100%;
+    margin: 0;
+    font-size: 13px; line-height: 1.5;
+    color: var(--ink-dim);
+  }
+  .install-note code {
+    font-family: var(--mono); font-size: 12px; color: var(--ink);
+    -webkit-box-decoration-break: clone; box-decoration-break: clone;
+  }
+  .install-note a { color: var(--accent3); text-decoration: none; }
+  .install-note a:hover { text-decoration: underline; }
   .install-cmd {
     flex: 1 1 280px;
     background: var(--bg-elev);
@@ -167,6 +220,9 @@
   }
   .install-cmd:hover { border-color: var(--accent3); }
   .install-cmd .cmd { white-space: nowrap; }
+  /* A command longer than the box wraps, at the <wbr> of its URL first */
+  .install-cmd.long { align-items: baseline; text-align: left; }
+  .install-cmd.long .cmd { white-space: normal; overflow-wrap: anywhere; }
   @media (max-width: 360px) { .install-cmd { font-size: 12px; gap: 8px; padding: 14px 12px; } }
   .install-cmd .dollar { color: var(--accent3); }
   .install-cmd .pip { color: var(--ink-dim); }
@@ -1268,6 +1324,10 @@
   <section class="hero">
     <div class="hero-grid">
       <div>
+        <a class="release-pill" href="/releases/1.93/">
+          <span class="release-tag">new</span>
+          <span>Version 1.93: what's new <span class="arrow">→</span></span>
+        </a>
         <div class="term-line">
           <span class="prompt">&gt;</span>
           <span>Dear ImGui Bundle: immediate-mode GUIs for Python &amp; C++</span>
@@ -1283,12 +1343,29 @@
           <em>The same code runs in the browser: no server, no rewrite.</em>
         </p>
 
-        <div class="install-row">
-          <button type="button" class="install-cmd" id="installCmd" aria-label="Copy install command">
-            <span class="dollar">$</span>
-            <span class="cmd"><span class="pip">pip install</span> imgui-bundle</span>
-            <span class="copy" id="copyLabel">copy</span>
-          </button>
+        <div class="install" data-active="py">
+          <div class="install-tabs" role="tablist" aria-label="Language">
+            <button type="button" class="install-tab" data-lang="py" role="tab" aria-selected="true">Python</button>
+            <button type="button" class="install-tab" data-lang="cpp" role="tab" aria-selected="false">C++</button>
+          </div>
+          <div class="install-row" data-lang="py">
+            <button type="button" class="install-cmd" data-copy="pip install imgui-bundle" aria-label="Copy install command">
+              <span class="dollar">$</span>
+              <span class="cmd"><span class="pip">pip install</span> imgui-bundle</span>
+              <span class="copy">copy</span>
+            </button>
+          </div>
+          <div class="install-row" data-lang="cpp">
+            <button type="button" class="install-cmd long" data-copy="git clone https://github.com/pthom/imgui_bundle_template my_app" aria-label="Copy the command that clones the C++ app template">
+              <span class="dollar">$</span>
+              <span class="cmd"><span class="pip">git clone</span> https://github.com/<wbr>pthom/<wbr>imgui_bundle_template my_app</span>
+              <span class="copy">copy</span>
+            </button>
+            <p class="install-note">
+              Then <code>cd my_app &amp;&amp; cmake -B build &amp;&amp; cmake --build build -j 8</code>: CMake fetches the bundle.
+              <a href="/doc/cpp/cpp-install/">Other ways to install →</a>
+            </p>
+          </div>
         </div>
 
         <div class="compat">
@@ -2012,20 +2089,33 @@ hello_imgui.run(App().gui, window_title=<span class="s">"Fruit Picker"</span>, w
     });
   })();
 
-  // Copy-to-clipboard for the install command
+  // Copy-to-clipboard for the install commands
   (function () {
-    const btn = document.getElementById('installCmd');
-    const label = document.getElementById('copyLabel');
-    if (!btn || !label) return;
-    const original = label.textContent;
-    btn.addEventListener('click', async () => {
-      try {
-        await navigator.clipboard.writeText('pip install imgui-bundle');
-        label.textContent = 'copied ✓';
-      } catch {
-        label.textContent = 'copy failed';
-      }
-      setTimeout(() => { label.textContent = original; }, 1600);
+    document.querySelectorAll('.install-cmd').forEach((btn) => {
+      const label = btn.querySelector('.copy');
+      const original = label.textContent;
+      btn.addEventListener('click', async () => {
+        try {
+          await navigator.clipboard.writeText(btn.dataset.copy);
+          label.textContent = 'copied ✓';
+        } catch {
+          label.textContent = 'copy failed';
+        }
+        setTimeout(() => { label.textContent = original; }, 1600);
+      });
+    });
+  })();
+
+  // Install language tabs
+  (function () {
+    document.querySelectorAll('.install-tab').forEach((tab) => {
+      tab.addEventListener('click', () => {
+        const install = tab.closest('.install');
+        install.dataset.active = tab.dataset.lang;
+        install.querySelectorAll('.install-tab').forEach((t) => {
+          t.setAttribute('aria-selected', String(t === tab));
+        });
+      });
     });
   })();
 
