@@ -4,7 +4,7 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Dear ImGui Bundle 1.93</title>
-<meta name="description" content="Dear ImGui Bundle 1.93: Dear ImGui 1.93, a renewed explorer and playground, phones and tablets, an API reference with live demos, RichMd, and two apps an AI built from llms.txt." />
+<meta name="description" content="Dear ImGui Bundle 1.93: Dear ImGui 1.93, a renewed explorer and playground, phones and tablets, an API reference with live demos, RichMd, and 66 apps to start from." />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Dear ImGui Bundle" />
 <meta property="og:title" content="Dear ImGui Bundle 1.93: what's new" />
@@ -118,6 +118,13 @@
   .highlight p strong { color: var(--ink); font-weight: 600; }
   .links { display: flex; flex-wrap: wrap; gap: 8px 18px; margin-top: 14px; font-weight: 600; font-size: 15px; }
   .links a::after { content: " \2192"; }
+  /* The apps to start from: the title above the pictures, then a list by category */
+  .highlight.apps { gap: 14px; }
+  .highlight.apps h3 { margin: 0; }
+  .app-list { margin: 4px 0 12px; padding-left: 20px; color: var(--ink-dim); }
+  .app-list li { margin: 0 0 6px; }
+  .app-list strong { color: var(--ink); font-weight: 600; }
+  .highlight p.aside { margin-top: 14px; padding-left: 12px; border-left: 2px solid var(--border-bright); font-size: 14.5px; color: var(--ink-muted); }
 
   /* Also new */
   .also { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
@@ -217,10 +224,37 @@
         </div>
       </article>
 
+      <article class="highlight wide apps">
+        <div>
+          <div class="num">02</div>
+          <h3>66 apps to start from, with their code</h3>
+        </div>
+        <div class="shot">
+          <div class="pair">
+            <img src="img/rotor.jpg" alt="The rotor run-up monitor: live acceleration, spectrum and spectrogram plots, with knobs" loading="lazy" />
+            <img src="img/health_and_wealth.jpg" alt="Health and wealth of nations in 1918: bubbles per country, and a card on the influenza pandemic" loading="lazy" />
+          </div>
+        </div>
+        <div>
+          <p>The playground and the explorer come with many apps to start from. Each one runs in your browser, next to its code: short, readable, ready to copy. Among them:</p>
+          <ul class="app-list">
+            <li><strong>Plotting</strong>: <a href="https://imgui-bundle.pages.dev/playground/?demo=explorables/rotor_dashboard.py">a real-time vibration dashboard for a rotor</a>; <a href="https://imgui-bundle.pages.dev/playground/?demo=explorables/health_and_wealth.py">the health and wealth of nations, 1800 to 2100</a>.</li>
+            <li><strong>Interactive science</strong>: <a href="https://imgui-bundle.pages.dev/playground/?demo=explorables/neural_spiral/neural_spiral.py">a neural network that learns two spirals</a>; <a href="https://imgui-bundle.pages.dev/playground/?demo=explorables/fourier_epicycles.py">Fourier epicycles</a>; <a href="https://imgui-bundle.pages.dev/playground/?demo=explorables/double_pendulum.py">a double pendulum</a>; <a href="https://imgui-bundle.pages.dev/playground/?demo=explorables/boids.py">flocking boids</a>.</li>
+            <li><strong>3D and shaders</strong>: <a href="https://imgui-bundle.pages.dev/playground/?demo=webgl_background_shader.py">a sea drawn by a shader behind the GUI</a>; <a href="https://imgui-bundle.pages.dev/playground/?demo=webgl_texture_in_image.py">a 3D cube in a texture</a>.</li>
+            <li><strong>Node editor and images</strong>: <a href="https://imgui-bundle.pages.dev/playground/?demo=demo_node_editor_color_mixer.py">a color mixer</a> and <a href="https://imgui-bundle.pages.dev/playground/?demo=demo_node_editor_image_pipeline.py">an image pipeline</a> in the node editor; <a href="https://imgui-bundle.pages.dev/playground/?demo=demo_immvision_inspector.py">ImmVision's image inspector</a>.</li>
+            <li><strong>And much more</strong>: Matplotlib, Seaborn and Cartopy, lessons, app templates.</li>
+          </ul>
+          <p class="aside">Your AI assistant can help you start: ask it to read <a href="https://imgui-bundle.pages.dev/llms.txt">https://imgui-bundle.pages.dev/llms.txt</a>, then give it the address of the demo you want to build on.</p>
+          <div class="links">
+            <a href="https://imgui-bundle.pages.dev/playground/">Explore them all</a>
+          </div>
+        </div>
+      </article>
+
       <article class="highlight">
         <div class="shot"><img src="img/phones.jpg" alt="Two phone screens: the neural network slide of the explorer, and Health and wealth in the playground" loading="lazy" /></div>
         <div>
-          <div class="num">02</div>
+          <div class="num">03</div>
           <h3>Phones and tablets, with nothing to write</h3>
           <p>Hello ImGui turns a finger into what its user expects: <strong>a swipe scrolls</strong> with inertia, a tap clicks, a long press is a right click, <strong>two fingers pinch</strong> to scale, and a text field opens the keyboard.</p>
           <p>Every demo of the explorer and the playground was checked on a phone.</p>
@@ -236,7 +270,7 @@
           <div class="credit">Picture: Dear ImGui 1.93.0's release notes.</div>
         </div>
         <div>
-          <div class="num">03</div>
+          <div class="num">04</div>
           <h3>Dear ImGui 1.93: crisper drawing</h3>
           <p>The draw list is reworked: widgets look the same or crisper, with new stroke flags for custom drawing. A drag or a slider edit can be cancelled with a right click or Escape.</p>
           <p>Custom drawing can move by half a pixel: the changelog says how to migrate.</p>
@@ -250,7 +284,7 @@
       <article class="highlight">
         <div class="shot"><img src="img/api_card.jpg" alt="The ImGui Explorer's API tab: the card of an ImPlot function beside its demo code" loading="lazy" /></div>
         <div>
-          <div class="num">04</div>
+          <div class="num">05</div>
           <h3>An API reference, with live demos</h3>
           <p><strong>The book's API pages</strong> cover all the bundle's libraries, in Python and C++. 450 entries of Dear ImGui, ImPlot and ImPlot3D show the demo that uses them: its picture, its code, and a link to run it.</p>
           <p>In the <strong>ImGui Explorer</strong>, click an identifier in the code: its card shows its signatures, its doc, and the demo lines that use it.</p>
@@ -264,7 +298,7 @@
       <article class="highlight">
         <div class="shot"><img src="img/richmd.jpg" alt="A RichMd document: its table of contents, and a search that highlights its matches" loading="lazy" /></div>
         <div>
-          <div class="num">05</div>
+          <div class="num">06</div>
           <h3>RichMd: rich text you can select and search, with math</h3>
           <p>The markdown renderer is now a standalone library, <strong>imgui_rich_md</strong>, which works with a stock Dear ImGui.</p>
           <p>Documents with a table of contents and a search, <strong>selectable text</strong>, LaTeX math, <strong>Mermaid diagrams</strong> drawn natively, and widgets inside the text.</p>
@@ -278,32 +312,12 @@
       <article class="highlight">
         <div class="shot"><img src="img/node_editor.jpg" alt="The node editor's image pipeline demo: nodes that draw the edges of a photo, then blend them with it" loading="lazy" /></div>
         <div>
-          <div class="num">06</div>
+          <div class="num">07</div>
           <h3>The node editor on thedmd's v0.9.4</h3>
           <p>About 110 fixes, and a test suite. <strong>Popups, combos and color pickers work inside nodes</strong>, and every editor follows the theme, light or dark.</p>
           <p>Two new demos, in Python and C++: a color mixer and an image pipeline.</p>
           <div class="links">
             <a href="https://imgui-bundle.pages.dev/playground/?demo=demo_node_editor_image_pipeline.py">Run the image pipeline</a>
-          </div>
-        </div>
-      </article>
-
-      <article class="highlight wide">
-        <div class="shot">
-          <div class="pair">
-            <img src="img/rotor.jpg" alt="The rotor run-up monitor: live acceleration, spectrum and spectrogram plots, with knobs" loading="lazy" />
-            <img src="img/health_and_wealth.jpg" alt="Health and wealth of nations in 1918: bubbles per country, and a card on the influenza pandemic" loading="lazy" />
-          </div>
-        </div>
-        <div>
-          <div class="num">07</div>
-          <h3>Two new apps in the playground</h3>
-          <p><strong>The rotor run-up monitor</strong>: a vibration-analysis dashboard. Toggle a bearing defect, and watch it in the spectrum. <strong>Health and wealth</strong>: the nations from 1800 to 2100, after Hans Rosling's Gapminder, with the data fetched live.</p>
-          <p>Both were written with the bundle's guide for AI assistants.</p>
-          <div class="links">
-            <a href="https://imgui-bundle.pages.dev/playground/?demo=explorables/rotor_dashboard.py">Run the rotor monitor</a>
-            <a href="https://imgui-bundle.pages.dev/playground/?demo=explorables/health_and_wealth.py">Run Health and wealth</a>
-            <a href="https://imgui-bundle.pages.dev/llms.txt">The guide: llms.txt</a>
           </div>
         </div>
       </article>
