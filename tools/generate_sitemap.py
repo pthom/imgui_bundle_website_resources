@@ -7,6 +7,8 @@ and emits one <url> entry per public HTML page:
   - /doc/**              (jupyter-book pages, excluding aux files)
   - /explorer/           (index only — not every demo)
   - /playground/
+  - /releases/**         (the release pages)
+  - /min_pyodide_app/*   (the minimal Pyodide template)
 """
 from __future__ import annotations
 
@@ -36,7 +38,8 @@ def url_for(html_path: Path) -> str:
         return f"{BASE_URL}/"
     if rel.endswith("/index.html"):
         return f"{BASE_URL}/{rel[: -len('index.html')]}"
-    return f"{BASE_URL}/{rel}"
+    # Cloudflare Pages serves x.html at /x, and redirects /x.html there
+    return f"{BASE_URL}/{rel.removesuffix('.html')}"
 
 
 def collect_entries() -> list[tuple[str, float]]:
@@ -61,6 +64,16 @@ def collect_entries() -> list[tuple[str, float]]:
         index = STAGING / sub / "index.html"
         if index.exists():
             add(index)
+
+    releases = STAGING / "releases"
+    if releases.is_dir():
+        for index in sorted(releases.rglob("index.html")):
+            add(index)
+
+    template = STAGING / "min_pyodide_app"
+    if template.is_dir():
+        for html in sorted(template.glob("*.html")):
+            add(html)
 
     return entries
 
