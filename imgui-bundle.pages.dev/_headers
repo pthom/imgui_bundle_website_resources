@@ -1,6 +1,11 @@
 # Cloudflare Pages _headers file (copied to _cf_staging/_headers at stage time).
 # Syntax: https://developers.cloudflare.com/pages/configuration/headers/
 #
+# Every page: no frame on another site (a click tricked through a transparent frame), no content-type sniffing.
+/*
+  Content-Security-Policy: frame-ancestors 'self'
+  X-Content-Type-Options: nosniff
+
 # Scope COOP/COEP to /explorer/* only. Site-wide would break the playground,
 # which pulls Pyodide from a CDN that doesn't set CORP headers.
 
