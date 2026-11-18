@@ -1,0 +1,5 @@
+# Cloudflare Pages redirects, copied to the site's root by `just cf_stage`
+# Minard, the homage to Minard's map of the 1812 campaign, lives on its own site
+/minard https://minard1812.org/ 301
+/minard/ https://minard1812.org/ 301
+/minard/* https://minard1812.org/:splat 301
