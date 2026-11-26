@@ -42,11 +42,10 @@ def url_for(html_path: Path) -> str:
     return f"{BASE_URL}/{rel.removesuffix('.html')}"
 
 
-def collect_entries() -> list[tuple[str, float]]:
-    entries: list[tuple[str, float]] = []
-
-    def add(p: Path) -> None:
-        entries.append((url_for(p), p.stat().st_mtime))
+def collect_pages() -> list[Path]:
+    """The staged HTML files of the public pages, in the sitemap's order."""
+    pages: list[Path] = []
+    add = pages.append
 
     landing = STAGING / "index.html"
     if landing.exists():
@@ -75,7 +74,11 @@ def collect_entries() -> list[tuple[str, float]]:
         for html in sorted(template.glob("*.html")):
             add(html)
 
-    return entries
+    return pages
+
+
+def collect_entries() -> list[tuple[str, float]]:
+    return [(url_for(p), p.stat().st_mtime) for p in collect_pages()]
 
 
 def main() -> int:
