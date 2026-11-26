@@ -12,7 +12,8 @@ import re
 import sys
 from xml.sax.saxutils import quoteattr
 
-from generate_sitemap import STAGING, collect_pages, url_for
+sys.dont_write_bytecode = True  # no __pycache__ in this repository: cf_resources_sync refuses a dirty tree
+from generate_sitemap import STAGING, collect_pages, url_for  # noqa: E402
 
 CANONICAL_RE = re.compile(r"<link\b[^>]*\brel=[\"']?canonical\b[^>]*>", re.IGNORECASE)
 HEAD_END_RE = re.compile(r"</head\s*>", re.IGNORECASE)

@@ -3,3 +3,28 @@
 /minard https://minard1812.org/ 301
 /minard/ https://minard1812.org/ 301
 /minard/* https://minard1812.org/:splat 301
+
+# The book lives under /doc/, but its page data holds addresses without that base (/api/implot, /api.implot.index.json):
+# its scripts add the base, while Google follows them as they are, and reported them as 404s
+/intro/interactive_manuals.md /doc/intro/interactive-manuals/ 301
+/intro/demos.md /doc/intro/demos/ 301
+/intro/key_features.md /doc/intro/key-features/ 301
+/api/index.md /doc/api/ 301
+/doc/intro/api/index.md /doc/api/ 301
+/api /doc/api/ 301
+/api/* /doc/api/:splat 301
+/api.* /doc/api.:splat 301
+/intro/* /doc/intro/:splat 301
+/intro.* /doc/intro.:splat 301
+/addons/* /doc/addons/:splat 301
+/addons.* /doc/addons.:splat 301
+/python/* /doc/python/:splat 301
+/python.* /doc/python.:splat 301
+/core-libs/* /doc/core-libs/:splat 301
+/core-libs.* /doc/core-libs.:splat 301
+/cpp/* /doc/cpp/:splat 301
+/cpp.* /doc/cpp.:splat 301
+/devel-docs/* /doc/devel-docs/:splat 301
+/devel-docs.* /doc/devel-docs.:splat 301
+/support/* /doc/support/:splat 301
+/support.* /doc/support.:splat 301
